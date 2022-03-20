@@ -1,0 +1,8 @@
+export const HEADER_NAVIGATION = {
+  DEFAULT_BUTTON_SIZE: '40px',
+  DEFAULT_BUTTON_RADIUS: '4rem',
+  DEFAULT_LEFT_BUTTON_COLOR: '#cbcbcb',
+  DEFAULT_RIGHT_BUTTON_COLOR: '#ffffff'
+}
+
+export const DEFAULT_BRAKE_TIMER_VALUE:number = 60
