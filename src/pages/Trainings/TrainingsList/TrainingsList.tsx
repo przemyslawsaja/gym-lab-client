@@ -11,9 +11,10 @@ import TrainingCardSkeleton from '../../../components/molecules/TrainingCard/Ske
 
 export const TrainingsList = observer(() => {
   const history = useHistory();
-  const { isTrainingListLoading, trainings, fetchUserTrainings, enableCreatorMode, clearTraining} = trainingStore;
+  const { isTrainingListLoading, trainings, fetchUserTrainings, enableCreatorMode, clearTraining } = trainingStore;
 
   useEffect(() => {
+    enableCreatorMode();
     fetchUserTrainings()
   }, [])
 
@@ -25,7 +26,8 @@ export const TrainingsList = observer(() => {
           history.push(ApplicationRoutePaths.TRAINING_CREATOR)
           clearTraining()
           enableCreatorMode();
-        }
+        },
+        content: 'Dodaj nowy trening'
       }
     }
   }

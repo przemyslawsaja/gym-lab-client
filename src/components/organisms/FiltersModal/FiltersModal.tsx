@@ -34,7 +34,8 @@ const FiltersModal:FC<IFiltersModal> = ({ToggleFiltersModal}): JSX.Element => {
 
   const onSubmit: SubmitHandler<Inputs> = data => {
     console.log(data)
-  }; 
+  };
+
   return (
     <ModalWrapper onSubmit={handleSubmit(onSubmit)}>
       <ModalHeader>

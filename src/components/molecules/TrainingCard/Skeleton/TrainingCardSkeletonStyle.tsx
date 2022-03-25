@@ -11,10 +11,10 @@ export const CardSkeleton = styled.div`
   border-radius: 25px;
   padding: 20px 10px 20px 20px;
   transition: 0.2s ease-in-out;
-  width: ${ CardSize.width };
+  width: 100%;
+  max-width: ${ CardSize.maxWidth };
   height: ${ CardSize.height };
   background: ${ theme.colors.brand.background100 };
-
 `
 
 export const CardDetailsSkeleton = styled.div`

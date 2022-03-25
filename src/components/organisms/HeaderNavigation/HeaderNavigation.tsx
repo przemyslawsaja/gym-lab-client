@@ -1,11 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import H1 from '../../atoms/H1/H1'
-import { HeaderContent, HeaderWrapper } from './HeaderNavigationStyle'
-import { RoundButton } from '../../atoms';
+import { HeaderContent, HeaderWrapper, BigButtonWrapper } from './HeaderNavigationStyle'
+import { Button, RoundButton } from '../../atoms';
 import { IHeaderButtons } from './__types__';
 import { ButtonType } from '../../atoms/Button/Button';
 import { HEADER_NAVIGATION } from '../../../common/Constants';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
+import { useWindowSize } from '../../../hooks/useWindowSize';
+import { deviceValues } from '../../../devices/Breakpoints';
 
 
 export interface IHeaderNavigationProps {
@@ -14,8 +16,21 @@ export interface IHeaderNavigationProps {
   buttons?: IHeaderButtons
 }
 
+enum buttonSide {
+  LEFT = 'left',
+  RIGHT = 'right'
+}
 
 const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle }) => {
+  const [ isLaptopWidth, setLaptopWidth ] = useState<boolean>(true);
+
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    width >= deviceValues.laptop
+    ? setLaptopWidth(true)
+    : setLaptopWidth(false)
+  }, [width])
 
   const buttonProps = {
     left: {
@@ -28,19 +43,47 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
     }
   }
 
+  const hideButtonsOnDesktop = ():boolean => {
+    if (!buttons) {
+      return false;
+    }
+
+    return !!buttons.hideOnDesktop && width >= deviceValues.laptop
+  }
+  const renderButton = (side: buttonSide) => {
+    if (!buttons) {
+      return;
+    }
+    const btn = buttons[side];
+
+    if(!btn || hideButtonsOnDesktop()){
+      return;
+    }
+
+    if(isLaptopWidth) {
+
+      return <BigButtonWrapper>
+        <Button  onClick={ btn.onClick } type={ side === buttonSide.LEFT ? ButtonType.SECONDARY : ButtonType.PRIMARY } content={ btn.content ?? ''}>
+          { btn.icon && <btn.icon { ...buttonProps[side] } /> }
+        </Button>
+      </BigButtonWrapper>
+    }
+
+    return <RoundButton radius={ HEADER_NAVIGATION.DEFAULT_BUTTON_RADIUS } onClick={ btn.onClick } type={ side === buttonSide.LEFT ? ButtonType.SECONDARY : ButtonType.PRIMARY }>
+      { btn.icon && <btn.icon { ...buttonProps[side] } /> }
+    </RoundButton>
+  }
+
   return <HeaderWrapper>
-    { buttons && buttons.left && <RoundButton radius={ HEADER_NAVIGATION.DEFAULT_BUTTON_RADIUS } onClick={ buttons.left.onClick } type={ ButtonType.SECONDARY }>
-      { buttons.left.icon && <buttons.left.icon { ...buttonProps.left }/> }
-    </RoundButton> }
+    { renderButton(buttonSide.LEFT) }
 
     <HeaderContent>
       <H1>{ title }</H1>
       <Paragraph>{ subtitle }</Paragraph>
     </HeaderContent>
 
-    { buttons && buttons.right && <RoundButton radius={ HEADER_NAVIGATION.DEFAULT_BUTTON_RADIUS } onClick={ buttons.right.onClick } type={ ButtonType.PRIMARY }>
-      { buttons.right.icon && <buttons.right.icon { ...buttonProps.right }/> }
-    </RoundButton> }
+    { renderButton(buttonSide.RIGHT) }
+
   </HeaderWrapper>
 }
 

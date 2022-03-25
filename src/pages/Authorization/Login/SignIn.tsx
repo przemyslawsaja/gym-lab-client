@@ -30,10 +30,6 @@ export const SignIn: FC = observer(() => {
             .then(() => history.push(ApplicationRoutePaths.HOME))
         }
       },
-      primaryAlternative: {
-        content: "Login with Google",
-        link: AuthorizationRoutePaths.AUTH_GOOGLE,
-      },
       secondary: {
         content: "Create account",
         onClick() {

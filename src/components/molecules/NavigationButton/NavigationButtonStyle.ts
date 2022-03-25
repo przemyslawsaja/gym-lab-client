@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link as LinkProto } from 'react-router-dom';
 import { theme } from '../../../theme/MainTheme';
 
@@ -12,6 +12,11 @@ export const Link = styled(LinkProto)<{ active: boolean, isSpecial: true | undef
   align-items: center;
   border: ${props => props.isSpecial ? `3px solid ${ theme.colors.brand.primary300 }` : 'none'};
   border-radius: 50%;
+  transition: 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: ${ ({ isSpecial }) => isSpecial ? theme.colors.brand.background200  : theme.colors.brand.primary300 };
+  }
   
   ::after {
     content: '';
@@ -23,5 +28,8 @@ export const Link = styled(LinkProto)<{ active: boolean, isSpecial: true | undef
     border-radius: 50%;
     top: 55px;
   }
+  
+
+
 `;
 

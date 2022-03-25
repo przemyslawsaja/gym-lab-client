@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from '../../devices/Breakpoints';
 
 export const Container = styled.div`
   height: 100vh;
@@ -10,5 +11,10 @@ export const Container = styled.div`
   
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media ${device.laptop} {
+    padding-bottom: 0;
+    margin: 200px 0 0 100px;
   }
 `

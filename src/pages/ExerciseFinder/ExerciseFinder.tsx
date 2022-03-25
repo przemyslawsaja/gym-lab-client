@@ -8,6 +8,7 @@ import { ExerciseSetsModal } from '../../components/organisms/ExerciseSetsModal/
 import { ApplicationRoutePaths } from '../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
 import { ExerciseCardSkeleton } from '../../components/molecules/ExerciseCard/Skeleton/ExerciseCardSekleton';
+import { ExerciseFinderSkeleton } from './ExerciseFinderSkeleton';
 
 export enum ExerciseFinderType {
   VIEW = 'view',
@@ -57,12 +58,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
 
     const renderExercises = (): JSX.Element | JSX.Element[] => {
       if (isLoading) {
-        return <>
-          <ExerciseCardSkeleton/>
-          <ExerciseCardSkeleton/>
-          <ExerciseCardSkeleton/>
-          <ExerciseCardSkeleton/>
-        </>
+        return <ExerciseFinderSkeleton />
       }
 
       return exerciseList.length <= 0
@@ -72,6 +68,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
 
     return (
       <ExerciseFinderWrapper>
+        {console.log(isExerciseSetsModalOpen)}
         { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } /> }
         <FinderContainer type={ type }>
           <SearchInput value={ exerciseSearch }

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme/MainTheme';
+import { device } from '../../../devices/Breakpoints';
 
 export const Nav = styled.nav<{ isActive?: boolean }>`
   height: ${ props => props.isActive ? '400px' : '90px' };
@@ -13,6 +14,14 @@ export const Nav = styled.nav<{ isActive?: boolean }>`
   background: ${ theme.colors.brand.background100 };
   border-radius: 30px 30px 0 0;
   border: 1px solid #6C6C6C;
+  border-bottom: none;
+
+  @media ${device.laptop} {
+   border-radius: 0;
+   left: 0;
+   width: 150px;  
+   height: 100%
+  }
 `;
 
 export const NavigationButtons = styled.div`
@@ -20,7 +29,21 @@ export const NavigationButtons = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media ${device.laptop} {
+    flex-direction: column;
+    margin: 0 0 0 35px;
+    gap: 50px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 `
+
+/*
+ * Workout navigation
+ **/
 
 export const TimerContent = styled.div`
   display: flex;
@@ -66,3 +89,5 @@ export const TimerEditLine = styled.div`
   width: 50px;
   background-color: #434758;
 `
+
+

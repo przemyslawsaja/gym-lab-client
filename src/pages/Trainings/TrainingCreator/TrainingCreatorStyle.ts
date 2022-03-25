@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { device } from '../../../devices/Breakpoints';
+
+export const TrainingCreatorSettings = styled.div`
+  @media ${device.laptop} {
+    max-width: 800px;
+  }
+`
 
 export const TrainingCreatorSection = styled.div`
   gap: 20px;

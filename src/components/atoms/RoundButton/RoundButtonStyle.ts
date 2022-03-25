@@ -15,7 +15,8 @@ export const RoundButtonWrapper = styled.button<{ radius?: string, borderRadius?
   height: ${ props => props.radius ? props.radius : DEFAULT_BUTTON_RADIUS };
   border-radius: ${ props => props.borderRadius ? props.borderRadius : DEFAULT_BORDER_RADIUS };
   border: none;
-
+  transition: 0.2s ease-in-out;
+  
   &:hover {
     background: ${ props => props.backgroundColor ? props.backgroundColor.hover : '#dedede' };
   }
