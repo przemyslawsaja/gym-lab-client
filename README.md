@@ -18,6 +18,8 @@
 - Mongoose
 - Passport
 - Typescript
+- Dotenv
+- Bcrypt
 
 ## Hosting
 
