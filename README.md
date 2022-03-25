@@ -16,6 +16,8 @@
 - Node.js
 - Express
 - Mongoose
+- Passport
+- Typescript
 
 ## Hosting
 
