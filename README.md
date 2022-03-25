@@ -3,6 +3,15 @@
 
 ![](src/assets/img/app-preview.png)
 
+## Demo
+
+https://gymlab.netlify.app/
+
+### Testing credentials
+
+**Login**: user  
+**Password**: user  
+
 ## Tech stack
 
 **FRONTEND**
