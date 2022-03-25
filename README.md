@@ -20,6 +20,7 @@ https://gymlab.netlify.app/
 - Styled Components
 - Mobx
 - Jest
+- PWA
 - React icons
 - React-responsive-carousel
 - React toastify
