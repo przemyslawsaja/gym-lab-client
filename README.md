@@ -4,11 +4,23 @@
 ![](src/assets/img/app-preview.png)
 
 ## Tech stack
+
+**FRONTEND**
 - React.js
 - Typescript
 - Styled Components
 - Mobx
 - Jest
+
+**BACKEND**
+- Node.js
+- Express
+- Mongoose
+
+## Hosting
+
+- Heroku
+- Netlify
 
 ## Functionalities
 
