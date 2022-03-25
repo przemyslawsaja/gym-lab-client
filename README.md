@@ -11,6 +11,12 @@
 - Styled Components
 - Mobx
 - Jest
+- React icons
+- React-responsive-carousel
+- React toastify
+- React router dom
+- React conffetti
+- React loading skeleton
 
 **BACKEND**
 - Node.js
