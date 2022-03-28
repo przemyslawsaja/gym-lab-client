@@ -79,7 +79,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
 
     return (
       <ExerciseFinderWrapper>
-        { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } fillWindow={!isTabletDevice}/> }
+        { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } fillWindow={!isTabletDevice} nested/> }
         <FinderContainer type={ type }>
           <FinderSearch>
             <SearchInput value={ exerciseSearch }

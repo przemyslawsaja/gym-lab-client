@@ -19,15 +19,16 @@ interface IModalProps {
   fillWindow?: boolean;
   confirmButton?: IModalButton;
   backButton: IModalButton;
+  nested?: boolean
 }
 
-export const Modal: FC<IModalProps> = observer(({ title, confirmButton, backButton, children, fillWindow }) => {
+export const Modal: FC<IModalProps> = observer(({ title, confirmButton, backButton, children, nested, fillWindow }) => {
   return <>
     <ModalWrapper fillWindow={ fillWindow }>
       <ModalHeader>
         <span>{ title }</span>
       </ModalHeader>
-      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick } cursor={'pointer'}/>
+      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick } cursor={ 'pointer' }/>
       <ModalBody>
         { children }
       </ModalBody>
@@ -40,6 +41,6 @@ export const Modal: FC<IModalProps> = observer(({ title, confirmButton, backButt
           : <Button content={ confirmButton.content } onClick={ confirmButton.onClick }/>) }
       </ModalFooter>
     </ModalWrapper>
-    <ModalBackground/>
+    <ModalBackground nested={nested}/>
   </>
 })

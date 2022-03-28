@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../../../theme/MainTheme';
 
-export const ModalBackground = styled.div`
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
+export const ModalBackground = styled.div<{nested?: boolean}>`
+  width: ${props => props.nested ? '200vw' : '100vw'};
+  height: ${props => props.nested ? '200vw' : '100vw'};
+  left: ${props => props.nested ? '-50%' : '0'};
+  top: ${props => props.nested ? '-50%' : '0'};
   position: absolute;
   background: black;
   opacity: 0.5;
