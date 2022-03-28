@@ -11,12 +11,12 @@ export interface IExerciseSetsModalProps {
   onClose(): void;
 
   sets?: IExerciseSet[]
-
+  fillWindow?: boolean
   onConfirm(): void,
 
 }
 
-export const ExerciseSetsModal: FC<IExerciseSetsModalProps> = observer(({ onClose, onConfirm, sets }) => {
+export const ExerciseSetsModal: FC<IExerciseSetsModalProps> = observer(({ onClose, onConfirm, sets, fillWindow }) => {
 
   const { exerciseSets, setExerciseSets } = exerciseSetsStore;
 
@@ -35,7 +35,7 @@ export const ExerciseSetsModal: FC<IExerciseSetsModalProps> = observer(({ onClos
   }
 
 
-  return <Modal title={ 'Dodaj serie i powtórzenia' } backButton={ modalBackButton } confirmButton={ modalConfirmButton } fillWindow>
+  return <Modal title={ 'Dodaj serie i powtórzenia' } backButton={ modalBackButton } confirmButton={ modalConfirmButton } fillWindow={fillWindow}>
     <>
       <ExerciseDetailsName> { trainingStore.exercise.name }</ExerciseDetailsName>
       <ExerciseDetailsTable>

@@ -27,7 +27,7 @@ export const Modal: FC<IModalProps> = observer(({ title, confirmButton, backButt
       <ModalHeader>
         <span>{ title }</span>
       </ModalHeader>
-      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick }/>
+      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick } cursor={'pointer'}/>
       <ModalBody>
         { children }
       </ModalBody>

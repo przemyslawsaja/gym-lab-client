@@ -17,7 +17,7 @@ export const ModalWrapper = styled.div<{fillWindow?: boolean}>`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  width: ${props => props.fillWindow ? '100vw' : '90%'};
+  width: ${props => props.fillWindow ? '100vw' : '60%'};
   height: ${props => props.fillWindow ? '100vh' : 'auto'};
   border-radius: 10px;
   background: ${theme.colors.brand.background300};
@@ -52,14 +52,21 @@ export const ModalBody = styled.div`
   width: 100%;
   height: 700px;
   overflow-y: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
 `
 
 export const ModalFooter = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   padding: 20px;
   background: ${theme.colors.brand.background300};
   display: flex;
   gap: 10px;
+  border-radius: 0 0 10px 10px;
 `

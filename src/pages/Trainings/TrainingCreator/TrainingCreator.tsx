@@ -136,7 +136,7 @@ export const TrainingCreator = observer(() => {
           : renderEmptyDataComponent()
         }
 
-        { isExerciseFinderModalEnabled && <Modal fillWindow title={ 'Wyszukaj ćwiczenie' } backButton={ {
+        { isExerciseFinderModalEnabled && <Modal fillWindow={!isTabletDevice} title={ 'Wyszukaj ćwiczenie' } backButton={ {
           content: 'Anuluj',
           onClick: () => setExerciseFinderModal(false)
         } }>

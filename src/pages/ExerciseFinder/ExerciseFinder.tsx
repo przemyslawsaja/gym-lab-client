@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react'
-import { ExerciseFinderWrapper, ExercisesContainer, ExercisesNotFound, FinderContainer } from './ExerciseFinderStyle'
+import React, { FC, useEffect, useState } from 'react'
+import { ExerciseFinderWrapper, ExercisesContainer, ExercisesNotFound, FinderContainer, FinderSearch } from './ExerciseFinderStyle'
 import { SearchInput } from '../../components/atoms/Inputs/SearchInput/SearchInput';
 import { exerciseFinderStore, exerciseSetsStore, trainingStore } from '../../stores';
 import { observer } from 'mobx-react';
@@ -7,8 +7,9 @@ import { MobileExerciseCard } from '../../components/molecules/ExerciseCard/Mobi
 import { ExerciseSetsModal } from '../../components/organisms/ExerciseSetsModal/ExerciseSetsModal';
 import { ApplicationRoutePaths } from '../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
-import { ExerciseCardSkeleton } from '../../components/molecules/ExerciseCard/Skeleton/ExerciseCardSekleton';
 import { ExerciseFinderSkeleton } from './ExerciseFinderSkeleton';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import { deviceValues } from '../../devices/Breakpoints';
 
 export enum ExerciseFinderType {
   VIEW = 'view',
@@ -25,17 +26,27 @@ interface IExerciseFinderProps {
   onExerciseSetsModalClose?(): void;
 }
 
-export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
-    type,
-    onExerciseClick,
-    onExerciseSetsModalClose,
-    onExerciseSetsModalConfirm
-  }) => {
+export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
+  ({
+     type,
+     onExerciseClick,
+     onExerciseSetsModalClose,
+     onExerciseSetsModalConfirm
+   }) => {
 
     const { exerciseSearch, exerciseList, setExerciseSearch, fetchExercises, isLoading } = exerciseFinderStore;
     const { exercise, assignExerciseToTraining } = trainingStore;
     const { isExerciseSetsModalOpen, disableExerciseSetsModal, clearSets } = exerciseSetsStore;
+    const [isTabletDevice, setTabletDevice] = useState<boolean>(true);
     const history = useHistory();
+
+    const { width } = useWindowSize();
+
+    useEffect(() => {
+      width >= deviceValues.tablet
+        ? setTabletDevice(true)
+        : setTabletDevice(false)
+    }, [width])
 
     const onExercisesSetsModalConfirmHandler = (): void => {
       onExerciseSetsModalConfirm && onExerciseSetsModalConfirm();
@@ -58,7 +69,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
 
     const renderExercises = (): JSX.Element | JSX.Element[] => {
       if (isLoading) {
-        return <ExerciseFinderSkeleton />
+        return <ExerciseFinderSkeleton/>
       }
 
       return exerciseList.length <= 0
@@ -68,13 +79,14 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
 
     return (
       <ExerciseFinderWrapper>
-        {console.log(isExerciseSetsModalOpen)}
-        { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } /> }
+        { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } fillWindow={!isTabletDevice}/> }
         <FinderContainer type={ type }>
-          <SearchInput value={ exerciseSearch }
-                       onChange={ (e) => setExerciseSearch(e.target.value) }
-                       placeholder={ "Wyszukaj ćwiczenia po jego nazwie..." }
-          />
+          <FinderSearch>
+            <SearchInput value={ exerciseSearch }
+                         onChange={ (e) => setExerciseSearch(e.target.value) }
+                         placeholder={ "Wyszukaj ćwiczenia po jego nazwie..." }
+            />
+          </FinderSearch>
 
           <ExercisesContainer>
             { renderExercises() }
