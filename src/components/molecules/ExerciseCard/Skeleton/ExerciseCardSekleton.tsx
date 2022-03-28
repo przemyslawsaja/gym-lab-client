@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExerciseCardWrapper, ExerciseName } from '../ExerciseCardStyle'
+import { ExerciseCardWrapper, ExerciseName } from '../MobileExerciseCard/MobileExerciseCardStyle'
 import Skeleton from 'react-loading-skeleton';
 
 export const ExerciseCardSkeleton = () => {

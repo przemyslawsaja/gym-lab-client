@@ -4,7 +4,6 @@ import { device } from '../../../devices/Breakpoints';
 
 export const Nav = styled.nav<{ isActive?: boolean }>`
   height: ${ props => props.isActive ? '400px' : '90px' };
-  transition: 0.5s ease-in-out;
   width: 100%;
   bottom: 0;
   position: fixed;

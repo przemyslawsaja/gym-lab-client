@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../../theme/MainTheme';
+import { theme } from '../../../../theme/MainTheme';
 
 export const ExerciseCardWrapper = styled.div`
   width: 100%;

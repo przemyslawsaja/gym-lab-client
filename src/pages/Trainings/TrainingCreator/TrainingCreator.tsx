@@ -4,7 +4,18 @@ import React, { useEffect, useState } from 'react';
 import { Input } from '../../../components/atoms/Inputs/Input/Input';
 import Paragraph from '../../../components/atoms/Paragraph/Paragraph';
 import { theme } from '../../../theme/MainTheme';
-import { EmptyExercises, EmptyExercisesMessage, ExercisesCardsWrapper, TrainingCreatorExercisesHeader, TrainingCreatorSection, TrainingCreatorSettings } from './TrainingCreatorStyle'
+import {
+  DesktopCardsWrapper,
+  EmptyExercises,
+  EmptyExercisesMessage,
+  ExercisesCardsWrapper,
+  TrainingCreatorExercisesHeader,
+  TrainingCreatorSection,
+  TrainingCreatorSettings,
+  TrainingCreatorFooter,
+  TrainingImage,
+  TrainingCreatorHeader
+} from './TrainingCreatorStyle'
 import { trainingStore } from '../../../stores';
 import { Button } from '../../../components/atoms';
 import { FiCheck, IoIosAddCircleOutline } from 'react-icons/all';
@@ -16,18 +27,20 @@ import { Modal } from '../../../components/atoms/Modals/Modal/Modal';
 import { ExerciseFinder, ExerciseFinderType } from '../../ExerciseFinder/ExerciseFinder';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { deviceValues } from '../../../devices/Breakpoints';
+import { DesktopExerciseCard } from '../../../components/molecules/ExerciseCard/DesktopExerciseCard/DesktopExerciseCard';
+import { ButtonType } from '../../../components/atoms/Button/Button';
 
 export const TrainingCreator = observer(() => {
   const [isExerciseFinderModalEnabled, setExerciseFinderModal] = useState<boolean>(false);
-  const [isLaptopWidth, setLaptopWidth] = useState<boolean>(true);
+  const [isTabletDevice, setTabletDevice] = useState<boolean>(true);
 
   const history = useHistory();
   const { width } = useWindowSize();
 
   useEffect(() => {
-    width >= deviceValues.laptop
-      ? setLaptopWidth(true)
-      : setLaptopWidth(false)
+    width >= deviceValues.tablet
+      ? setTabletDevice(true)
+      : setTabletDevice(false)
   }, [width])
 
   const navigation = {
@@ -59,14 +72,27 @@ export const TrainingCreator = observer(() => {
     setDescription,
     setDuration,
     setBrake,
-
   } = trainingStore;
 
+  const showExerciseButton = ():boolean => {
+    return training.hasExercises && !isTabletDevice;
+  }
+
+  const renderExercisesList = () => {
+    if (isTabletDevice) {
+      return <DesktopCardsWrapper>
+        { training.exercises.map(exercise => <DesktopExerciseCard exercise={ exercise } />) }
+        <DesktopExerciseCard isEmpty={ true } emptyContent={ 'Dodaj ćwiczenie' } onClick={ () => setExerciseFinderModal(true) }/>
+      </DesktopCardsWrapper>
+    }
+
+    return <ExercisesCardsWrapper>
+      { training.exercises.map(exercise => <TrainingCreatorExerciseCard exercise={ exercise}/> )}
+    </ExercisesCardsWrapper>
+  }
   const renderEmptyDataComponent = () => {
-    if (isLaptopWidth) {
-      return <div>
-        lala
-      </div>
+    if (isTabletDevice) {
+      return <DesktopExerciseCard isEmpty={ true } emptyContent={ 'Dodaj ćwiczenie' } onClick={ () => setExerciseFinderModal(true) }/>;
     }
 
     return <EmptyExercises>
@@ -79,36 +105,36 @@ export const TrainingCreator = observer(() => {
 
   return (
     <MainTemplate navigation={ navigation }>
-      <TrainingCreatorSettings>
-        <TrainingCreatorSection>
-          <Paragraph color={ theme.colors.brand.primary300 }><strong>Ogólne</strong></Paragraph>
-          <Input value={ name } onChange={ e => setName(e.target.value) } label={ 'Nazwa' }/>
-          <Input value={ description } onChange={ e => setDescription(e.target.value) } label={ 'Opis' }/>
-        </TrainingCreatorSection>
+     <TrainingCreatorHeader>
+       <TrainingCreatorSettings>
+         <TrainingCreatorSection>
+           <Paragraph color={ theme.colors.brand.primary300 }><strong>Ogólne</strong></Paragraph>
+           <Input value={ name } onChange={ e => setName(e.target.value) } label={ 'Nazwa' }/>
+           <Input value={ description } onChange={ e => setDescription(e.target.value) } label={ 'Opis' }/>
+         </TrainingCreatorSection>
 
-        <TrainingCreatorSection>
-          <Paragraph color={ theme.colors.brand.primary300 }><strong>Ustawienia czasu</strong></Paragraph>
-          <Input value={ duration } onChange={ e => setDuration(parseInt(e.target.value)) } label={ 'Długosć treningu' } type={ 'number' } prefix='minut'/>
-          <Input value={ brake } onChange={ e => setBrake(parseInt(e.target.value)) } label={ 'Długość przerw między ćwiczeniami' } type={ 'number' } prefix={ 'sekund' }/>
-        </TrainingCreatorSection>
-      </TrainingCreatorSettings>
+         <TrainingCreatorSection>
+           <Paragraph color={ theme.colors.brand.primary300 }><strong>Ustawienia czasu</strong></Paragraph>
+           <Input value={ duration } onChange={ e => setDuration(parseInt(e.target.value)) } label={ 'Długosć treningu' } type={ 'number' } prefix='minut'/>
+           <Input value={ brake } onChange={ e => setBrake(parseInt(e.target.value)) } label={ 'Długość przerw między ćwiczeniami' } type={ 'number' } prefix={ 'sekund' }/>
+         </TrainingCreatorSection>
+       </TrainingCreatorSettings>
 
+       {isTabletDevice && <TrainingImage />}
+     </TrainingCreatorHeader>
 
       <TrainingCreatorSection>
         <TrainingCreatorExercisesHeader>
           <Paragraph color={ theme.colors.brand.primary300 }><strong>Ćwiczenia</strong></Paragraph>
-          { training.hasExercises && <Button content={ "Dodaj ćwiczenie" } onClick={ () => setExerciseFinderModal(true) }>
+          { showExerciseButton() && <Button content={ "Dodaj ćwiczenie" } onClick={ () => setExerciseFinderModal(true) }>
             <IoIosAddCircleOutline size={ '2.5rem' }/>
           </Button> }
         </TrainingCreatorExercisesHeader>
 
         { training.hasExercises
-          ? <ExercisesCardsWrapper>
-            { training.exercises.map(exercise => <TrainingCreatorExerciseCard exercise={ exercise }/>) }
-          </ExercisesCardsWrapper>
+          ? renderExercisesList()
           : renderEmptyDataComponent()
         }
-
 
         { isExerciseFinderModalEnabled && <Modal fillWindow title={ 'Wyszukaj ćwiczenie' } backButton={ {
           content: 'Anuluj',
@@ -117,6 +143,9 @@ export const TrainingCreator = observer(() => {
           <ExerciseFinder type={ ExerciseFinderType.MODAL } onExerciseSetsModalClose={ () => setExerciseFinderModal(false) }/>
         </Modal> }
 
+        <TrainingCreatorFooter>
+          {isTabletDevice && <Button content={'Zapisz trening'} type={ButtonType.QUATERNARY} />}
+        </TrainingCreatorFooter>
       </TrainingCreatorSection>
 
 

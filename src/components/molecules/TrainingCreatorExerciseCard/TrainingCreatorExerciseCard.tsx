@@ -12,7 +12,9 @@ interface ITrainingCreatorExerciseCard {
   exercise: Exercise;
 }
 
+
 const TrainingCreatorExerciseCard: FC<ITrainingCreatorExerciseCard> = observer(({ exercise }) => {
+
   const onExerciseRemoveHandler = (): void => {
     trainingStore.removeExerciseFromTraining(exercise)
     toast.success('Pomyślnie usunięte ćwiczenie');

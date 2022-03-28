@@ -3,7 +3,7 @@ import { ExerciseFinderWrapper, ExercisesContainer, ExercisesNotFound, FinderCon
 import { SearchInput } from '../../components/atoms/Inputs/SearchInput/SearchInput';
 import { exerciseFinderStore, exerciseSetsStore, trainingStore } from '../../stores';
 import { observer } from 'mobx-react';
-import { ExerciseCard } from '../../components/molecules/ExerciseCard/ExerciseCard'
+import { MobileExerciseCard } from '../../components/molecules/ExerciseCard/MobileExerciseCard/MobileExerciseCard'
 import { ExerciseSetsModal } from '../../components/organisms/ExerciseSetsModal/ExerciseSetsModal';
 import { ApplicationRoutePaths } from '../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
@@ -63,7 +63,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(({
 
       return exerciseList.length <= 0
         ? <ExercisesNotFound> Brak wyników wyszukiwania :(</ExercisesNotFound>
-        : exerciseList.map((exercise, idx) => <ExerciseCard key={ idx } exercise={ exercise } onClick={ onExerciseClick }/>)
+        : exerciseList.map((exercise, idx) => <MobileExerciseCard key={ idx } exercise={ exercise } onClick={ onExerciseClick }/>)
     }
 
     return (
