@@ -13,7 +13,7 @@ export const TrainingsWrapper = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     flex-direction: row;
     align-items: flex-start;
     gap: 50px;

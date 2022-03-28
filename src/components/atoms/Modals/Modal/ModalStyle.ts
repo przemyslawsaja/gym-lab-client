@@ -3,7 +3,7 @@ import { theme } from '../../../../theme/MainTheme';
 
 export const ModalBackground = styled.div<{nested?: boolean}>`
   width: ${props => props.nested ? '200vw' : '100vw'};
-  height: ${props => props.nested ? '200vw' : '100vw'};
+  height: ${props => props.nested ? '200vh' : '100vh'};
   left: ${props => props.nested ? '-50%' : '0'};
   top: ${props => props.nested ? '-50%' : '0'};
   position: absolute;

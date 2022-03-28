@@ -81,7 +81,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
       <ExerciseFinderWrapper>
         { isExerciseSetsModalOpen && <ExerciseSetsModal onConfirm={ onExercisesSetsModalConfirmHandler } onClose={ onExerciseSetsModalCloseHandler } fillWindow={!isTabletDevice} nested/> }
         <FinderContainer type={ type }>
-          <FinderSearch>
+          <FinderSearch type={type}>
             <SearchInput value={ exerciseSearch }
                          onChange={ (e) => setExerciseSearch(e.target.value) }
                          placeholder={ "Wyszukaj ćwiczenia po jego nazwie..." }

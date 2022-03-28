@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { ExerciseFinderType } from './ExerciseFinder';
 import { theme } from '../../theme/MainTheme';
+import { device } from '../../devices/Breakpoints';
 
 export const ExerciseFinderWrapper = styled.div`
   height: 100%;
@@ -16,13 +17,19 @@ export const FinderContainer = styled.div<{ type?: ExerciseFinderType }>`
   position: relative;
 `
 
-export const FinderSearch = styled.div`
+export const FinderSearch = styled.div<{type?: ExerciseFinderType}>`
   position: fixed;
   top: 80px;
-  padding: 0 10px;
+  padding-right: 40px;
   width: 100%;
-  left: 0;
+  left: 20px;
+  padding-left: 0;
   background: ${theme.colors.brand.background300};
+
+  @media ${device.tablet} {
+    top: ${ props => props.type === ExerciseFinderType.MODAL ? '80px' : '200px' };
+    padding-left: ${ props => props.type === ExerciseFinderType.MODAL ? 0 : '120px' };
+  }
 `
 
 export const ExercisesContainer = styled.div`

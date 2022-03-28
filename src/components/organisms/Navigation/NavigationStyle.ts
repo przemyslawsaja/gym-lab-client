@@ -15,7 +15,7 @@ export const Nav = styled.nav<{ isActive?: boolean }>`
   border: 1px solid #6C6C6C;
   border-bottom: none;
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
    border-radius: 0;
    left: 0;
    width: 150px;  
@@ -29,7 +29,7 @@ export const NavigationButtons = styled.div`
   justify-content: space-evenly;
   align-items: center;
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     flex-direction: column;
     margin: 0 0 0 35px;
     gap: 50px;

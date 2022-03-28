@@ -22,14 +22,14 @@ enum buttonSide {
 }
 
 const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle }) => {
-  const [ isLaptopWidth, setLaptopWidth ] = useState<boolean>(true);
+  const [ isTabletDevice, setTabletDevice ] = useState<boolean>(true);
 
   const { width } = useWindowSize();
 
   useEffect(() => {
-    width >= deviceValues.laptop
-    ? setLaptopWidth(true)
-    : setLaptopWidth(false)
+    width >= deviceValues.tablet
+    ? setTabletDevice(true)
+    : setTabletDevice(false)
   }, [width])
 
   const buttonProps = {
@@ -48,7 +48,7 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
       return false;
     }
 
-    return !!buttons.hideOnDesktop && width >= deviceValues.laptop
+    return !!buttons.hideOnDesktop && width >= deviceValues.tablet
   }
   const renderButton = (side: buttonSide) => {
     if (!buttons) {
@@ -60,7 +60,7 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
       return;
     }
 
-    if(isLaptopWidth) {
+    if(isTabletDevice) {
 
       return <BigButtonWrapper>
         <Button  onClick={ btn.onClick } type={ side === buttonSide.LEFT ? ButtonType.SECONDARY : ButtonType.PRIMARY } content={ btn.content ?? ''}>

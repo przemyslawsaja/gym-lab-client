@@ -13,7 +13,7 @@ export const Container = styled.div`
     display: none;
   }
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     padding-bottom: 0;
     margin: 200px 0 0 100px;
   }
