@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     background: ${ theme.colors.brand.background300};
     color: ${ GlobalTheme.textColor };
+    
   }
 `;
 

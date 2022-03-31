@@ -36,6 +36,14 @@ export class WorkoutStore {
     makeAutoObservable(this)
   }
 
+  public isFinalExercise = (): boolean => {
+    return this.incrementedExerciseNumber === this.training.exercises.length;
+  }
+
+  public isFirstExercise = (): boolean => {
+    return this.currentExerciseNumber === 0
+  }
+
   @action
   public setWorkoutTraining = (training: Training):void => {
     this.isLoading = true;

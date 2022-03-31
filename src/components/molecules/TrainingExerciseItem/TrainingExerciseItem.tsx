@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import Link from '../../atoms/Link/Link'
 import { theme } from '../../../theme/MainTheme';
@@ -13,6 +13,8 @@ import { AiFillEdit } from 'react-icons/ai';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { ExerciseSetsModal } from '../../organisms/ExerciseSetsModal/ExerciseSetsModal';
 import { ConfirmModal } from '../../atoms/Modals/ConfirmModal/ConfirmModal';
+import { useWindowSize } from '../../../hooks/useWindowSize';
+import { deviceValues } from '../../../devices/Breakpoints';
 
 export interface ITrainingExerciseItemProps {
   exercise: Exercise
@@ -21,11 +23,18 @@ export interface ITrainingExerciseItemProps {
 export const TrainingExerciseItem: FC<ITrainingExerciseItemProps> = observer(({ exercise }) => {
   const [isExerciseEditModalEnabled, setExerciseEditModal] = useState<boolean>(false);
   const [isExerciseDeleteConfirmModalEnabled, setExerciseDeleteModal] = useState<boolean>(false);
-
+  const [ isTabletDevice, setTabletDevice ] = useState<boolean>(true);
   const { name, sets, id } = exercise;
   const { isEditModeEnabled } = trainingStore;
   const { exerciseSets, clearSets } = exerciseSetsStore;
   const lastSet = sets[sets.length - 1]
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    width >= deviceValues.tabletL
+      ? setTabletDevice(true)
+      : setTabletDevice(false)
+  }, [width])
 
   const onExerciseEditHandler = ():void => {
     setExerciseEditModal(true)
@@ -70,12 +79,13 @@ export const TrainingExerciseItem: FC<ITrainingExerciseItemProps> = observer(({ 
         </Paragraph>
       </ExerciseDescription>
       { renderExerciseButtons() }
-      { isExerciseEditModalEnabled && <ExerciseSetsModal onClose={ () => setExerciseEditModal(false) } onConfirm={ onExerciseUpdateHandler } sets={sets}/> }
+      { isExerciseEditModalEnabled && <ExerciseSetsModal onClose={ () => setExerciseEditModal(false) } onConfirm={ onExerciseUpdateHandler } sets={sets} fillWindow={!isTabletDevice}/> }
       { isExerciseDeleteConfirmModalEnabled &&
       <ConfirmModal backButton={{content: 'Anuluj', onClick() { setExerciseDeleteModal(false)} }}
                     confirmButton={{content: 'Usuń ćwiczenie', onClick() { trainingStore.removeExerciseFromTraining(exercise)}}}
                     confirmMessage={'Czy na pewno chcesz usunąć to ćwiczenie ?'}
                     confirmDelete
+
       /> }
     </ExerciseContainer>
     <Separator/>

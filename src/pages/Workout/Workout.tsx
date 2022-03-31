@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { CongratulationsImage, CongratulationsMessage, WorkoutHeader, WorkoutHeaderLine, WorkoutTable, WorkoutTableBody, WorkoutTableHeader, WorkoutWrapper } from './WorkoutStyle'
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { MainTemplate } from '../../templates';
 import { MdCheck, MdClose, MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
@@ -15,16 +14,44 @@ import Confetti from 'react-confetti'
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { IHeaderNavigationProps } from '../../components/organisms/HeaderNavigation/HeaderNavigation';
 import { IWorkoutModeNavigationProps } from '../../components/organisms/Navigation/Navigation';
+import {
+  CarouselContainer,
+  CarouselWrapper,
+  CongratulationsImage,
+  CongratulationsMessage,
+  WorkoutFooter,
+  WorkoutHeader,
+  WorkoutHeaderLine,
+  WorkoutHeaderTitle,
+  WorkoutTable,
+  WorkoutTableBody,
+  WorkoutTableHeader,
+  WorkoutWrapper,
+  WorkoutFooterWrapper
+} from './WorkoutStyle'
+import { deviceValues } from '../../devices/Breakpoints';
+import { Button, RoundButton } from '../../components/atoms';
+import { ButtonType } from '../../components/atoms/Button/Button';
+import { MdTimer } from 'react-icons/all';
+import { TimerModal } from '../../components/molecules/TimerModal/TimerModal';
 
 export const Workout = observer(() => {
   const { trainingId } = useParams<{ trainingId: string, exerciseId: string }>();
+  const [isTabletDevice, setTabletDevice] = useState<boolean>(true);
+  const [isTimerModalOpen, setTimerModal] = useState<boolean>(false);
   const { width, height } = useWindowSize();
   const history = useHistory()
+
+  useEffect(() => {
+    width >= deviceValues.tabletL
+      ? setTabletDevice(true)
+      : setTabletDevice(false)
+  }, [width])
+
   const {
     setWorkoutTraining,
     currentExercise,
     isLoading,
-    currentExerciseNumber,
     incrementedExerciseNumber,
     training,
     isWorkoutFinished,
@@ -35,7 +62,9 @@ export const Workout = observer(() => {
     isTimerEnabled,
     disableTimer,
     enableTimer,
-    maxTimerValue
+    maxTimerValue,
+    isFinalExercise,
+    isFirstExercise
   } = workoutStore;
 
   useEffect(() => {
@@ -43,39 +72,43 @@ export const Workout = observer(() => {
   }, [])
 
   const getLeftNavigationButton = () => {
-    return currentExerciseNumber === 0
+    return isFirstExercise()
       ? {
         icon: MdClose, onClick() {
           history.push(ApplicationRoutePaths.TRAININGS)
-        }
+        },
+        content: "Opuść trening"
       }
       : {
         icon: MdNavigateBefore, onClick() {
           previousExercise()
-        }
+        },
+        content: "Poprzednie ćwiczenie"
       }
   }
 
   const getRightNavigationButton = () => {
-    return incrementedExerciseNumber === training.exercises.length
+    return isFinalExercise()
       ? {
         icon: MdCheck, onClick() {
           setWorkoutAsFinished();
-        }
+        },
+        content: "Zakończ trening"
       }
       : {
         icon: MdNavigateNext, onClick() {
           nextExercise();
-        }
+        },
+        content: "Kolejne ćwiczenie"
       }
   }
 
   const workoutNavigation: IHeaderNavigationProps = {
     title: "Tryb treningowy",
-    subtitle: `${ incrementedExerciseNumber } z ${ training.exercises.length }`,
+    subtitle: `${ incrementedExerciseNumber } z ${ training.exercises.length } ${ isTabletDevice && 'ćwiczeń' }`,
     buttons: {
-      left: getLeftNavigationButton(),
-      right: getRightNavigationButton()
+      left: isTabletDevice ? undefined : getLeftNavigationButton(),
+      right: isTabletDevice ? undefined : getRightNavigationButton()
     }
   }
 
@@ -115,15 +148,31 @@ export const Workout = observer(() => {
     breakTime: maxTimerValue
   }
 
-  return (
-    <MainTemplate navigation={ workoutNavigation } workoutMode={ workoutModeProps }>
-      <WorkoutWrapper>
-        <Carousel showThumbs={ false } showStatus={ false }>
-          { currentExercise.images.map((img, idx) => <img src={ img } alt={ currentExercise.name } key={ idx }/>) }
-        </Carousel>
+  const renderMainTemplate = (children: JSX.Element): JSX.Element => {
+    if (isTabletDevice) {
+      return <MainTemplate navigation={ workoutNavigation }>
+        { children }
+      </MainTemplate>
+    }
 
+    return <MainTemplate navigation={ workoutNavigation } workoutMode={ workoutModeProps }>
+      { children }
+    </MainTemplate>
+  }
+
+  return renderMainTemplate(<>
+    <WorkoutWrapper>
+      <CarouselContainer>
+        <CarouselWrapper>
+          <Carousel showThumbs={ false } showStatus={ false } autoPlay infiniteLoop>
+            { currentExercise.images.map((img, idx) => <img src={ img } alt={ currentExercise.name } key={ idx }/>) }
+          </Carousel>
+        </CarouselWrapper>
+      </CarouselContainer>
+
+      <div>
         <WorkoutHeader>
-          <H1> { currentExercise.name } </H1>
+          <WorkoutHeaderTitle> { currentExercise.name } </WorkoutHeaderTitle>
           <WorkoutHeaderLine/>
         </WorkoutHeader>
 
@@ -137,8 +186,21 @@ export const Workout = observer(() => {
             { currentExercise.sets.map((set, idx) => <WorkoutTableRow set={ set } key={ set.id } number={ idx + 1 }/>) }
           </WorkoutTableBody>
         </WorkoutTable>
-
-      </WorkoutWrapper>
-    </MainTemplate>
-  )
+      </div>
+    </WorkoutWrapper>
+    <WorkoutFooterWrapper>
+      <WorkoutFooter>
+        <Button { ...getLeftNavigationButton() } type={ ButtonType.SECONDARY } reverse={ !isFirstExercise() }>
+          { isFirstExercise() ? <MdClose size={ '2.5rem' }/> : <MdNavigateBefore size={ '2.5rem' }/> }
+        </Button>
+        <RoundButton radius={ '150px' } type={ ButtonType.RED } onClick={ () => setTimerModal(true) }>
+          <MdTimer size={ 60 } color={ '#fff' }/>
+        </RoundButton>
+        <Button { ...getRightNavigationButton() } type={ isFinalExercise() ? ButtonType.QUATERNARY : ButtonType.PRIMARY }>
+          { isFinalExercise() ? <MdCheck size={ '2.5rem' }/> : <MdNavigateNext size={ '2.5rem' }/> }
+        </Button>
+      </WorkoutFooter>
+    </WorkoutFooterWrapper>
+    { isTimerModalOpen && <TimerModal disableModal={ () => setTimerModal(false) } workoutMode={ workoutModeProps }/> }
+  </>);
 })

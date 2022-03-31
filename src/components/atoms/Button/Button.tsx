@@ -1,16 +1,15 @@
 import React, { FC } from 'react';
 import { ButtonWrapper } from './ButtonStyle';
 import { theme } from '../../../theme/MainTheme';
-import { IconType } from 'react-icons';
 import Link from '../Link/Link';
 
 interface IButton {
   content: string,
-  icon?: IconType
   size?: ButtonSize,
   type?: ButtonType,
   roundCorners?: boolean,
   children?: JSX.Element,
+  reverse?: boolean,
 
   onClick?(e?: React.MouseEvent<HTMLButtonElement, MouseEvent>): void,
 
@@ -34,7 +33,7 @@ export interface IButtonColor {
 
 export type ButtonSize = 'large' | 'medium' | 'small';
 
-export const Button: FC<IButton> = ({ link, content, children, icon, size, type, onClick }, roundCorners) => {
+export const Button: FC<IButton> = ({ link, content, children, reverse, size, type, onClick }, roundCorners) => {
   const { primary300, primary400, background100, background200, tertiary300, tertiary400, quaternary400, } = theme.colors.brand;
 
   const defaultButtonColor: IButtonColor = { main: primary300, hover: primary400 }
@@ -63,8 +62,13 @@ export const Button: FC<IButton> = ({ link, content, children, icon, size, type,
   }
 
   const button = <ButtonWrapper size={ size } onClick={ onClick } backgroundColor={ getColorByType() } roundCorners={ roundCorners }>
-    <span>{ content }</span>
-    { children }
+    { reverse ? <>
+      { children }
+      <span>{ content }</span>
+    </> : <>
+      <span>{ content }</span>
+      { children }
+    </> }
   </ButtonWrapper>
 
   if (link) {

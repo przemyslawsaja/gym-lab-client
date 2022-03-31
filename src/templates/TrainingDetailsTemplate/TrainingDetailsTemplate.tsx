@@ -13,10 +13,9 @@ export const TrainingDetailsTemplate: FC<ITrainingDetailsTemplate> = ({ children
   return (
     <>
       <TailsWrapper>
-        <TrainingDetailsTile path={ `/trainings/${ trainingId }/exercises` } tileIcon={ { icon: BiDumbbell } }/>
-        <TrainingDetailsTile path={ `/trainings/${ trainingId }/brakes` } tileIcon={ { icon: AiOutlineClockCircle } }/>
-        <TrainingDetailsTile path={ `/trainings/${ trainingId }/recovery` } tileIcon={ { icon: GiNightSleep } }/>
-        {/*<TrainingDetailsTile path={ `/trainings/${ trainingId }/notes` } icon="far fa-clipboard"/>*/ }
+        <TrainingDetailsTile path={ `/trainings/${ trainingId }/exercises` } tileIcon={ { icon: BiDumbbell } } label={ "Ćwiczenia" }/>
+        <TrainingDetailsTile path={ `/trainings/${ trainingId }/brakes` } tileIcon={ { icon: AiOutlineClockCircle } } label={ "Przerwy" }/>
+        <TrainingDetailsTile path={ `/trainings/${ trainingId }/recovery` } tileIcon={ { icon: GiNightSleep } } label={ "Regeneracja" }/>
       </TailsWrapper>
       { children }
     </>

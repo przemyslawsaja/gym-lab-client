@@ -27,7 +27,7 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
   const { width } = useWindowSize();
 
   useEffect(() => {
-    width >= deviceValues.tablet
+    width >= deviceValues.tabletL
     ? setTabletDevice(true)
     : setTabletDevice(false)
   }, [width])
@@ -48,7 +48,7 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
       return false;
     }
 
-    return !!buttons.hideOnDesktop && width >= deviceValues.tablet
+    return !!buttons.hideOnDesktop && width >= deviceValues.tabletL
   }
   const renderButton = (side: buttonSide) => {
     if (!buttons) {

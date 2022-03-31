@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
-import { WorkoutTableRowItem, WorkoutTableRowWrapper } from './WorkoutTableRowStyle';
+import { WorkoutTableRowItem, WorkoutTableRowItemNumber, WorkoutTableRowWrapper } from './WorkoutTableRowStyle';
 import { Input } from '../../atoms/Inputs/Input/Input';
 import { IExerciseSet } from '../../organisms/ExerciseSetsModal/ExerciseSet';
-import H1 from '../../atoms/H1/H1';
 
 interface IWorkoutTableRow {
   set: IExerciseSet;
@@ -15,7 +14,9 @@ export const WorkoutTableRow: FC<IWorkoutTableRow> = ({ set, number }) => {
 
   return <WorkoutTableRowWrapper>
     <WorkoutTableRowItem>
-      <H1>{ number }.</H1>
+      <WorkoutTableRowItemNumber>
+        { number }
+      </WorkoutTableRowItemNumber>
     </WorkoutTableRowItem>
     <WorkoutTableRowItem>
       <Input onChange={ e => setWeight(parseInt(e.target.value)) } value={ weight } placeholder={ set.weight.toString() } prefix={ 'kg' } type={ 'number' }/>

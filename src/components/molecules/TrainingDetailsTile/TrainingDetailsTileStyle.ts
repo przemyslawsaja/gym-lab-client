@@ -19,13 +19,29 @@ export const TailWrapper = styled.button<{ active?: boolean }>`
   align-items: center;
   margin: 30px 10px;
   -webkit-box-shadow: 5px 5px 20px 0px ${ shadow1 };
-  -moz-box-shadow: 5px 5px 20px 0px ${ shadow1 };    
+  -moz-box-shadow: 5px 5px 20px 0px ${ shadow1 };
   box-shadow: 5px 5px 20px 0px ${ shadow1 };
+
+
 `
 
 export const Link = styled(LinkProp)`
   text-decoration: none;
-  &:active:visited{
+
+  &:active:visited {
     color: #fff;
+  }
+`
+
+export const DetailsTabLabel = styled.div<{ isActive: boolean }>`
+  color: ${ props => props.isActive ? theme.colors.brand.quaternary300 : theme.colors.brand.text400 };
+  margin-right: 30px;
+  font-size: 2rem;
+  border-bottom:  ${ props => props.isActive ? ` 2px solid ${theme.colors.brand.quaternary300}` : null};
+  margin-bottom: 50px;
+  font-weight: ${ props => props.isActive ? 'bold' : 'normal'};
+
+  &:hover {
+    color: ${ theme.colors.brand.quaternary300 };
   }
 `

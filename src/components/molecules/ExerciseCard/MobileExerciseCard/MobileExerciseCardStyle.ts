@@ -11,7 +11,11 @@ export const ExerciseCardWrapper = styled.div`
   justify-content: space-between;
   font-size: 1rem;
   margin: 10px 0;
+  transition: 0.2s ease-in-out;
   
+  &:hover {
+    background: ${theme.colors.brand.background200};
+  }
   button {
     width: auto;
   }

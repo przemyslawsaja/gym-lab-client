@@ -14,8 +14,9 @@ export const Nav = styled.nav<{ isActive?: boolean }>`
   border-radius: 30px 30px 0 0;
   border: 1px solid #6C6C6C;
   border-bottom: none;
-
-  @media ${device.tablet} {
+  transition: 0.5s ease-in-out;
+  
+  @media ${device.tabletL} {
    border-radius: 0;
    left: 0;
    width: 150px;  
@@ -29,7 +30,7 @@ export const NavigationButtons = styled.div`
   justify-content: space-evenly;
   align-items: center;
 
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     flex-direction: column;
     margin: 0 0 0 35px;
     gap: 50px;
@@ -56,37 +57,4 @@ export const TimerContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `
-
-export const Timer = styled.div`
-  height: 200px;
-  width: 200px;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const TimerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-`
-
-export const TimerEditWrapper = styled.div`
-  display: flex;
-  padding: 10px;
-  margin-top: 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-`
-
-export const TimerEditLine = styled.div`
-  padding: 0 20px;
-  height: 2px;
-  width: 50px;
-  background-color: #434758;
-`
-
 

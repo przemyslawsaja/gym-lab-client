@@ -1,20 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
 import ProfileImage from '../../atoms/ProfileImage/ProfileImage';
 import ProfileImageSrc from '../../../assets/img/exampleImg.jpg';
 import NavButton from '../../molecules/NavigationButton/NavigationButton';
-import { Nav, NavigationButtons, Timer, TimerContent, TimerContentWrapper, TimerEditLine, TimerEditWrapper, TimerWrapper } from './NavigationStyle';
+import { Nav, NavigationButtons, TimerContent, TimerContentWrapper } from './NavigationStyle';
 import { useLocation } from 'react-router-dom';
 import { theme } from '../../../theme/MainTheme';
 import { BiDumbbell } from 'react-icons/bi'
 import { IoMdBook, IoMdSearch } from 'react-icons/io'
 import { trainingStore, workoutStore } from '../../../stores';
-import { HiMinus, HiPlus, ImSphere, IoChevronDown, MdTimer, MdTimerOff } from 'react-icons/all';
+import { ImSphere, MdTimer, MdTimerOff } from 'react-icons/all';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { RoundButton } from '../../atoms';
 import { observer } from 'mobx-react';
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import { DEFAULT_BRAKE_TIMER_VALUE } from '../../../common/Constants';
+import { WorkoutTimer } from '../../molecules/Timer/WorkoutTimer';
 
 export interface IWorkoutModeNavigationProps {
   isTimerActive: boolean,
@@ -32,7 +31,6 @@ export interface INavigationProps {
 
 export const Navigation: FC<INavigationProps> = observer(({ workoutMode }) => {
     const { pathname } = useLocation();
-    const { quaternary300, background300 } = theme.colors.brand;
 
     const onTimerButtonClickHandler = () => {
       workoutMode?.isTimerActive ? workoutMode.disableTimer() : workoutMode?.enableTimer()
@@ -41,7 +39,7 @@ export const Navigation: FC<INavigationProps> = observer(({ workoutMode }) => {
     }
 
     useEffect(() => {
-      if(workoutMode && workoutMode.isTimerActive) {
+      if (workoutMode && workoutMode.isTimerActive) {
         workoutStore.setTimerInterval();
       }
 
@@ -66,30 +64,7 @@ export const Navigation: FC<INavigationProps> = observer(({ workoutMode }) => {
             { workoutMode.isTimerActive ? <MdTimerOff size={ 25 } color={ '#fff' }/> : <MdTimer size={ 25 } color={ '#fff' }/> }
           </RoundButton>
         </TimerContentWrapper>
-        <TimerWrapper>
-          <Timer>
-            { workoutMode.isTimerActive && <CircularProgressbar
-              value={ workoutStore.timerValue }
-              maxValue={ workoutMode.breakTime }
-              minValue={ 0 }
-              text={ `${ workoutStore.timerValue.toString() }s` }
-              styles={ buildStyles({
-                strokeLinecap: 'round',
-                textSize: '16px',
-                pathTransitionDuration: 0.5,
-                pathColor: quaternary300,
-                textColor: quaternary300,
-                trailColor: background300,
-              }) }/> }
-          </Timer>
-        </TimerWrapper>
-        <TimerEditWrapper>
-          <TimerEditLine/>
-          <HiMinus size={ 30 } color={ quaternary300 } onClick={() => workoutStore.subtractTime(15)}/>
-          <Paragraph fontSize={ "2rem" }>15s</Paragraph>
-          <HiPlus size={ 30 } color={ quaternary300 } onClick={() => workoutStore.addTime(15)}/>
-          <TimerEditLine/>
-        </TimerEditWrapper>
+        <WorkoutTimer breakTime={ workoutMode.breakTime }/>
       </Nav>
     }
 

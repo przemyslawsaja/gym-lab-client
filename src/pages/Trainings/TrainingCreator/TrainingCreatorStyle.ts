@@ -72,7 +72,7 @@ export const TrainingCreatorHeader = styled.div`
   width: 100%;
   grid-template-columns: 1fr;
   
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     grid-template-columns: 3fr 2fr;
     gap: 100px;
   }

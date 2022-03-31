@@ -24,7 +24,7 @@ export const CardBackgroundImage = styled.div`
   border-radius: 0 25px 25px 0;
   transition: 0.2s ease-in;
   
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     width: 100%;
     height: 60%;
     border-radius: 25px 25px 0 0;
@@ -47,7 +47,7 @@ export const Card = styled.div`
   box-shadow: 0px 3px 15px -10px rgba(0, 0, 0, 1);
   transition: 0.2s ease-in;
   
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     height: 350px;
     display: flex;
     align-items: flex-end;

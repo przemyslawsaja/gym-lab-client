@@ -43,7 +43,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
     const { width } = useWindowSize();
 
     useEffect(() => {
-      width >= deviceValues.tablet
+      width >= deviceValues.tabletL
         ? setTabletDevice(true)
         : setTabletDevice(false)
     }, [width])

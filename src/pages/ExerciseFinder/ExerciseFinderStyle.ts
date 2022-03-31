@@ -26,7 +26,7 @@ export const FinderSearch = styled.div<{type?: ExerciseFinderType}>`
   padding-left: 0;
   background: ${theme.colors.brand.background300};
 
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     top: ${ props => props.type === ExerciseFinderType.MODAL ? '80px' : '200px' };
     padding-left: ${ props => props.type === ExerciseFinderType.MODAL ? 0 : '120px' };
   }
