@@ -1,7 +1,7 @@
-import { RegisterUseCase } from './aai/registerUseCase';
+import { RegisterUseCase } from './auth/registerUseCase';
 import { ListUserTrainingsUseCase } from './training/listUserTrainingsUseCase';
 import { CreateUserTrainingsUseCase } from './training/createUserTrainingUseCase';
-import { LoginUseCase } from './aai/loginUseCase';
+import { LoginUseCase } from './auth/loginUseCase';
 import { ListExercisesUseCase } from './exercise/listExercisesUseCase';
 import { GetTrainingByIdUseCase } from './training/getTrainingByIdUseCase';
 

@@ -164,7 +164,7 @@ export const Workout = observer(() => {
     <WorkoutWrapper>
       <CarouselContainer>
         <CarouselWrapper>
-          <Carousel showThumbs={ false } showStatus={ false } autoPlay infiniteLoop>
+          <Carousel showThumbs={ false } showStatus={ false } autoPlay infiniteLoop >
             { currentExercise.images.map((img, idx) => <img src={ img } alt={ currentExercise.name } key={ idx }/>) }
           </Carousel>
         </CarouselWrapper>

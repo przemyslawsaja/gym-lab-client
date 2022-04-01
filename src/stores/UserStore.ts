@@ -1,7 +1,7 @@
 
 import { action, makeAutoObservable, observable } from 'mobx';
-import { RegisterData } from '../useCases/aai/registerUseCase';
-import { AuthorizationResult } from '../useCases/aai/loginUseCase';
+import { RegisterData } from '../useCases/auth/registerUseCase';
+import { AuthorizationResult } from '../useCases/auth/loginUseCase';
 import { localSettings } from '../common/LocalSettings';
 
 export class UserStore {

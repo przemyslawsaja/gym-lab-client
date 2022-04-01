@@ -32,8 +32,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "PORT=4000 rescripts start",
+    "dev": "PORT=4000 rescripts start",
     "build": "rescripts build",
+    "cypress": "cypress open",
     "test": "rescripts test"
   },
   "rescripts": [
@@ -75,6 +76,7 @@
     "@rescripts/cli": "^0.0.16",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
+    "cypress": "^9.5.3",
     "line-replace": "^2.0.1",
     "mobx": "^6.3.5",
     "mobx-react": "^7.2.1"
