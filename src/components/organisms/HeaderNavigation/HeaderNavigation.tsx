@@ -63,7 +63,7 @@ const HeaderNavigation: FC<IHeaderNavigationProps> = ({ title, buttons, subtitle
     if(isTabletDevice) {
 
       return <BigButtonWrapper>
-        <Button  onClick={ btn.onClick } type={ side === buttonSide.LEFT ? ButtonType.SECONDARY : ButtonType.PRIMARY } content={ btn.content ?? ''}>
+        <Button onClick={ btn.onClick } type={ side === buttonSide.LEFT ? ButtonType.SECONDARY : ButtonType.PRIMARY } content={ btn.content ?? ''}>
           { btn.icon && <btn.icon { ...buttonProps[side] } /> }
         </Button>
       </BigButtonWrapper>

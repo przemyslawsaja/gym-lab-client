@@ -12,6 +12,8 @@ import { MdOutlineClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { deviceValues } from '../../../devices/Breakpoints';
+import { ButtonType } from '../../../components/atoms/Button/Button';
+import { IHeaderButton } from '../../../components/organisms/HeaderNavigation/__types__';
 
 interface ITrainingDetailsLayoutProps {
   children: JSX.Element | JSX.Element[]
@@ -42,12 +44,12 @@ export const TrainingDetailsLayout: FC<ITrainingDetailsLayoutProps> = observer((
     disableEditMode()
   }
 
-  const rightButton = {
+  const rightButton: IHeaderButton = {
     iconProps: { size: '2rem' },
     icon: isEditModeEnabled ? FiCheck : AiFillEdit, onClick() {
       isEditModeEnabled ? onTrainingUpdateHandler() : enableEditMode()
     },
-    content: isEditModeEnabled ? "Zapisz zmiany":"Edytuj trening"
+    content: isEditModeEnabled ? "Zapisz zmiany": "Edytuj trening",
   }
 
   const trainingExercisesNavigation = {

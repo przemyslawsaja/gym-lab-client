@@ -19,12 +19,13 @@ interface IModalProps {
   confirmButton?: IModalButton;
   backButton: IModalButton;
   confirmDelete?: boolean;
+  width?: number;
 }
 
-export const ConfirmModal: FC<IModalProps> = observer(({ confirmButton, backButton, confirmDelete, children, confirmMessage }) => {
+export const ConfirmModal: FC<IModalProps> = observer(({ confirmButton, width, backButton, confirmDelete, confirmMessage }) => {
   return <>
-    <ConfirmModalWrapper>
-      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick }/>
+    <ConfirmModalWrapper width={width}>
+      <AiOutlineCloseCircle size={ '4rem' } className={ 'close-modal' } onClick={ backButton.onClick } cursor={'pointer'}/>
       <ConfirmModalBody>
         { confirmMessage }
       </ConfirmModalBody>

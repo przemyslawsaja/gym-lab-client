@@ -11,7 +11,7 @@ export const WorkoutWrapper = styled.div`
 
   @media ${ device.laptopL } {
     display: grid;
-    margin-top: 100px;
+    margin-top: 50px;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
   }

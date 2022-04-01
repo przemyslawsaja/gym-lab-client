@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { ButtonWrapper } from '../../atoms/Button/ButtonStyle';
+import { device } from '../../../devices/Breakpoints';
 
 export const ExerciseContainer = styled.div`
   display: flex;
@@ -34,5 +35,19 @@ export const FloatingAddExerciseButton =  styled.div`
   left:50%;
   bottom: 15%;
   transform: translate(-50%, -15%);
-  width: 225px;;
+  width: 225px;
+
+  @media ${ device.tabletL } {
+    right: 0;
+    bottom: 5%;
+    left: unset;
+    width: 250px;
+    margin-right: -70px;
+    
+    button {
+      height: 80px;
+
+    }
+  }
+  
 `

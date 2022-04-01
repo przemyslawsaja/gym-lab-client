@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons';
 import { IconBaseProps } from 'react-icons/lib/esm/iconBase';
+import { ButtonType } from '../../atoms/Button/Button';
 
 export interface IHeaderButton {
   icon?: IconType;
