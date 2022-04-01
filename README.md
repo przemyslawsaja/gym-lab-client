@@ -19,8 +19,8 @@ https://gymlab.netlify.app/
 - Typescript
 - Styled Components
 - Mobx
-- Jest
 - PWA
+- Cypress
 - React icons
 - React-responsive-carousel
 - React toastify
