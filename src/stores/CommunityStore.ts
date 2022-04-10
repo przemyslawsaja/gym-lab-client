@@ -1,6 +1,6 @@
-import { action, computed, makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 import { Training } from '../models/Training/Training';
-import { likeCommunityTrainingsUseCase, listCommunityTrainingsUseCase, dislikeCommunityTrainingsUseCase } from '../useCases';
+import { commentCommunityTrainingsUseCase, dislikeCommunityTrainingsUseCase, likeCommunityTrainingsUseCase, listCommunityTrainingsUseCase } from '../useCases';
 import { ISharedTraining } from '../useCases/community/listCommunityTrainingsUseCase';
 import { userStore } from './index';
 
@@ -10,6 +10,9 @@ export class CommunityStore {
 
   @observable
   public isCommunityLoading: boolean = true;
+
+  @observable
+  public comment: string = '';
 
   constructor() {
     makeAutoObservable(this)
@@ -30,8 +33,8 @@ export class CommunityStore {
     this.isCommunityLoading = false;
   }
 
-  public isLikedByUser = (likes: string[]):boolean => {
-   return likes.some(userId => userId === userStore.id)
+  public isLikedByUser = (likes: string[]): boolean => {
+    return likes.some(userId => userId === userStore.id)
   }
 
   @action
@@ -49,5 +52,24 @@ export class CommunityStore {
       user: userStore.id,
     })
 
+  }
+
+  @action
+  public commentCommunityTraining = async (training: string): Promise<void> => {
+    await commentCommunityTrainingsUseCase.exec({
+      training,
+      user: userStore.id,
+      content: this.comment,
+    })
+  }
+
+  @action
+  public clearTrainingComment = ():void => {
+    this.comment = ''
+  }
+
+  @action
+  public setTrainingComment = (value: string): void => {
+    this.comment = value;
   }
 }

@@ -4,6 +4,7 @@ import { IHeaderNavigationProps } from '../../components/organisms/HeaderNavigat
 import { communityStore } from '../../stores';
 import { SharedTraining } from '../../components/molecules/SharedTraining/SharedTraining';
 import { observer } from 'mobx-react';
+import { SharedTrainingSkeleton } from '../../components/molecules/SharedTraining/SharedTrainingSkeleton';
 
 const trainingNavigation: IHeaderNavigationProps = {
   title: "Społeczność",
@@ -17,9 +18,12 @@ export const Community = observer(() => {
 
   const renderSharedTrainings = (): JSX.Element=> {
     if (communityStore.isCommunityLoading) {
-      return <span>
-        Loading...
-      </span>;
+      return <div>
+        <SharedTrainingSkeleton />
+        <SharedTrainingSkeleton />
+        <SharedTrainingSkeleton />
+        <SharedTrainingSkeleton />
+      </div>;
     }
 
     return <>

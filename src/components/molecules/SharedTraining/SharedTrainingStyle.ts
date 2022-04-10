@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme/MainTheme';
+import { Input } from '../../atoms/Inputs/Input/Input';
 
 export const SharedTrainingWrapper = styled.div`
   width: 100%;
@@ -81,4 +82,24 @@ export const SharedTrainingIcons = styled.div`
 export const SharedTrainingLeftIcons = styled.div`
   display: flex;
   gap: 15px;
+`
+
+export const AddCommentWrapper = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 4fr 1fr;
+  gap: 10px;
+  margin: 10px 0;
+  
+  button {
+    width: 80px;
+  }
+`
+
+export const SkeletonWrapper = styled.div`
+  width: 100vw;
+  margin-left: -20px;
+  padding: 20px;
+  background: ${theme.colors.brand.background100};
+  margin-bottom: 20px;
 `

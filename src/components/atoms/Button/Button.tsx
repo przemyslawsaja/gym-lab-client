@@ -11,7 +11,7 @@ interface IButton {
   children?: JSX.Element,
   reverse?: boolean,
 
-  onClick?(e?: React.MouseEvent<HTMLButtonElement, MouseEvent>): void,
+  onClick?(e?: any): void,
 
   link?: string,
 }

@@ -36,6 +36,7 @@ export class UserStore {
   public setAuthorizationResultValues = (res: AuthorizationResult):void => {
     this.token = res.token.value;
     this.id = res.user.value;
+    this.username = res.username.value;
     this.isAuthorized = true;
   }
 
@@ -54,15 +55,18 @@ export class UserStore {
   public getLocalStorage = (): void => {
     this.token = localSettings.getValue('token')
     this.id = localSettings.getValue('user')
+    this.username = localSettings.getValue('username')
   }
 
   public clearLocalStorage = ():void => {
     localSettings.setValue('token', '')
     localSettings.setValue('user', '')
+    localSettings.setValue('username', '')
   }
 
   public setLocalStorage = ():void => {
     localSettings.setValue('token', this.token)
     localSettings.setValue('user', this.id)
+    localSettings.setValue('username', this.username)
   }
 }

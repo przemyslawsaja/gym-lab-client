@@ -6,7 +6,7 @@ import ProfileImageSrc from '../../../assets/img/user.png';
 import ProfileImage from '../../atoms/ProfileImage/ProfileImage';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { theme } from '../../../theme/MainTheme';
-import { AiFillHeart, AiOutlineHeart, BsBookmark, FaRegComment } from 'react-icons/all';
+import { AiFillHeart, AiOutlineHeart, BsBookmark, BsBookmarkCheck, FaComment, FaRegComment } from 'react-icons/all';
 import { SharedTrainingComments } from './SharedTrainingComments';
 import { communityStore } from '../../../stores';
 
@@ -16,26 +16,43 @@ interface ISharedTrainingProps {
 
 export const SharedTraining: FC<ISharedTrainingProps> = observer(({ training }) => {
   const [isLiked, setLike] = useState<boolean>(false);
+  const [isCommentModeEnabled, setCommentMode] = useState<boolean>(false);
+  const [isCommentsVisible, setCommentsVisibility] = useState<boolean>(false)
   const [initialLikes, setInitialLikes] = useState<number>(0);
 
   useEffect(() => {
     setInitialLikes(training.likes.length)
-    if(communityStore.isLikedByUser(training.likes)){
+    if (communityStore.isLikedByUser(training.likes)) {
       setLike(true)
     }
 
   }, [])
 
-  const onLikeHandler = async (training: string) => {
+  const enableCommentsHandler = (): void => {
+    setCommentsVisibility(true)
+  }
+
+  const onLikeHandler = async (training: string): Promise<void> => {
     setLike(true)
     setInitialLikes(initialLikes + 1);
     await communityStore.likeCommunityTraining(training)
   }
 
-  const onDislikeHandler = async (training: string) => {
+  const onDislikeHandler = async (training: string): Promise<void> => {
     setLike(false)
     setInitialLikes(initialLikes - 1);
     await communityStore.dislikeCommunityTraining(training)
+  }
+
+  const onCommentHandler = async (training: string): Promise<void> => {
+    await communityStore.commentCommunityTraining(training);
+    setCommentMode(false);
+  }
+
+  const toggleCommentModeHandler = (): void => {
+    setCommentMode(!isCommentModeEnabled);
+    setCommentsVisibility(false);
+    communityStore.clearTrainingComment();
   }
 
   return <Styled.SharedTrainingWrapper>
@@ -77,20 +94,28 @@ export const SharedTraining: FC<ISharedTrainingProps> = observer(({ training }) 
     <Styled.SharedTrainingIcons>
       <Styled.SharedTrainingLeftIcons>
         { isLiked
-          ? <AiFillHeart size={ '3rem' } cursor={ 'pointer' } onClick={ () => onDislikeHandler(training.training.id)} />
-          : <AiOutlineHeart size={ '3rem' } cursor={ 'pointer' } onClick={  () => onLikeHandler(training.training.id)}/>
+          ? <AiFillHeart size={ '3rem' } cursor={ 'pointer' } onClick={ () => onDislikeHandler(training.training.id) }/>
+          : <AiOutlineHeart size={ '3rem' } cursor={ 'pointer' } onClick={ () => onLikeHandler(training.training.id) }/>
         }
-        <FaRegComment size={ '2.8rem' } cursor={ 'pointer' }/>
+        { isCommentModeEnabled
+          ? <FaComment size={ '2.8rem' } cursor={ 'pointer' } color={ theme.colors.brand.text400 } onClick={ toggleCommentModeHandler }/>
+          : <FaRegComment size={ '2.8rem' } cursor={ 'pointer' } onClick={ toggleCommentModeHandler }/>
+        }
       </Styled.SharedTrainingLeftIcons>
-      <BsBookmark size={ '2.8rem' } cursor={ 'pointer' }/>
-      {/*<BsBookmarkCheck />*/ }
+      { false ? <BsBookmarkCheck size={ '2.8rem' } cursor={ 'pointer' }/> : <BsBookmark size={ '2.8rem' } cursor={ 'pointer' }/> }
 
     </Styled.SharedTrainingIcons>
     <Paragraph bold color={ '#fff' } fontSize={ '1.3rem' }>{ initialLikes } Likes</Paragraph>
     <Paragraph fontSize={ '1.3rem' } inline color={ theme.colors.brand.text200 } bold> { training.author } </Paragraph>
     <Paragraph fontSize={ '1.3rem' } inline> sprawdzcie ten trening cardio! Spalisz aż 700 kcal w niecałą godzine</Paragraph>
-    <SharedTrainingComments comments={ training.comments }/>
-    {/*<Input onChange={() => console.log('xd')} value={''} placeholder={"Dodaj komentarz..."} />*/ }
+    <SharedTrainingComments comments={ training.comments }
+                            isCommentModeEnabled={ isCommentModeEnabled }
+                            onCommentHandler={ () => onCommentHandler(training.training.id) }
+                            training={ training.training.id }
+                            isCommentsVisible={ isCommentsVisible }
+                            enableComments={ enableCommentsHandler }
+    />
     <Paragraph fontSize={ '1.3rem' } color={ theme.colors.brand.text600 }> { new Date(training.createdAt).toDateString() } </Paragraph>
+
   </Styled.SharedTrainingWrapper>
 })
