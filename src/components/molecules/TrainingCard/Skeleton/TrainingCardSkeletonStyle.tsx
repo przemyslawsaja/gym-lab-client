@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../../theme/MainTheme';
 import { CardSize } from '../TrainingCardStyle';
+import { device } from '../../../../devices/Breakpoints';
 
 export const CardSkeleton = styled.div`
   cursor: pointer;
@@ -15,6 +16,10 @@ export const CardSkeleton = styled.div`
   max-width: ${ CardSize.maxWidth };
   height: ${ CardSize.height };
   background: ${ theme.colors.brand.background100 };
+
+  @media ${ device.tabletL } {
+    height: 350px;
+  }
 `
 
 export const CardDetailsSkeleton = styled.div`
