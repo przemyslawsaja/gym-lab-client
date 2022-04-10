@@ -1,8 +1,5 @@
 import { Account } from '../pages/Account/Account';
 import { Profile } from '../pages/Profile/Profile';
-import { Achievements } from '../pages/Achivments/Achievements';
-import { Settings } from '../pages/Settings/Settings';
-import { Statistics } from '../pages/Statistics/Statistics';
 import { TrainingsList } from '../pages/Trainings/TrainingsList/TrainingsList';
 import { TrainingExercises } from '../pages/Trainings/TrainingDetails/TrainingExercises/TrainingExercises'
 import { TrainingBrakes } from '../pages/Trainings/TrainingDetails/TrainingBrakes/TrainingBrakes';
@@ -16,6 +13,7 @@ import { ExerciseFinderPage } from '../pages/ExerciseFinder/ExerciseFinderPage';
 import React from 'react';
 import { observer } from 'mobx-react';
 import { userStore } from '../stores';
+import { Community } from '../pages/Community/Community';
 
 export enum ApplicationRoutePaths {
   HOME = '/',
@@ -34,6 +32,7 @@ export enum ApplicationRoutePaths {
   TRAINING_HISTORY = '/trainingHistory',
   TRAINING_CREATOR = '/training-creator',
   WORKOUT = '/workout/:trainingId',
+  COMMUNITY = '/community'
 }
 
 export const applicationRoutes: RouteProps[] = [
@@ -47,10 +46,8 @@ export const applicationRoutes: RouteProps[] = [
   { path: ApplicationRoutePaths.TRAINING_CREATOR, exact: true, component: TrainingCreator },
   { path: ApplicationRoutePaths.ACCOUNT, exact: true, component: Account },
   { path: ApplicationRoutePaths.PROFILE, exact: true, component: Profile },
-  { path: ApplicationRoutePaths.ACHIEVEMENTS, exact: true, component: Achievements },
-  { path: ApplicationRoutePaths.SETTINGS, exact: true, component: Settings },
-  { path: ApplicationRoutePaths.STATISTICS, exact: true, component: Statistics },
   { path: ApplicationRoutePaths.WORKOUT, exact: true, component: Workout },
+  { path: ApplicationRoutePaths.COMMUNITY, exact: true, component: Community },
   { path: '', exact: false, component: () => <Redirect to={ ApplicationRoutePaths.TRAININGS }/> },
 ];
 

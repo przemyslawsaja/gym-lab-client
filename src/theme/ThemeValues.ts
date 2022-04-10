@@ -34,6 +34,7 @@ export const colors: IColors = {
     text300: '#a9acb8',
     text400: '#888b94',
     text500: '#686b72',
+    text600: '#53565b',
   },
   action: {
     error100: '#ea5757',

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
 import ProfileImage from '../../atoms/ProfileImage/ProfileImage';
-import ProfileImageSrc from '../../../assets/img/exampleImg.jpg';
+import ProfileImageSrc from '../../../assets/img/user.png';
 import NavButton from '../../molecules/NavigationButton/NavigationButton';
 import { Nav, NavigationButtons, TimerContent, TimerContentWrapper } from './NavigationStyle';
 import { useLocation } from 'react-router-dom';
@@ -72,7 +72,7 @@ export const Navigation: FC<INavigationProps> = observer(({ workoutMode }) => {
       <Nav>
         <NavigationButtons>
 
-          <NavButton path={ ApplicationRoutePaths.HOME } location={ pathname }>
+          <NavButton path={ ApplicationRoutePaths.COMMUNITY } location={ pathname }>
             <ImSphere size={ 30 } color={ '#fff' }/>
           </NavButton>
 

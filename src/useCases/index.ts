@@ -4,6 +4,9 @@ import { CreateUserTrainingsUseCase } from './training/createUserTrainingUseCase
 import { LoginUseCase } from './auth/loginUseCase';
 import { ListExercisesUseCase } from './exercise/listExercisesUseCase';
 import { GetTrainingByIdUseCase } from './training/getTrainingByIdUseCase';
+import { ListCommunityTrainingsUseCase } from './community/listCommunityTrainingsUseCase';
+import { LikeCommunityTrainingsUseCase } from './community/likeCommunityTraining';
+import { DislikeCommunityTrainingsUseCase } from './community/unlikeCommunityTraining';
 
 export const loginUseCase = new LoginUseCase();
 export const registerUseCase = new RegisterUseCase();
@@ -11,3 +14,6 @@ export const listUserTrainingsUseCase = new ListUserTrainingsUseCase();
 export const createUserTrainingUseCase = new CreateUserTrainingsUseCase();
 export const listExercisesUseCase = new ListExercisesUseCase();
 export const getTrainingByIdUseCase = new GetTrainingByIdUseCase();
+export const listCommunityTrainingsUseCase = new ListCommunityTrainingsUseCase();
+export const likeCommunityTrainingsUseCase = new LikeCommunityTrainingsUseCase();
+export const dislikeCommunityTrainingsUseCase = new DislikeCommunityTrainingsUseCase();

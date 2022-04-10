@@ -49,7 +49,9 @@ export interface IBrandColors {
   text300: string,
   text400: string,
   text500: string,
+  text600: string,
 }
+
 interface IBackgroundColors {
   solid: string,
   gradient: {
