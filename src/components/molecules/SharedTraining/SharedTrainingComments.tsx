@@ -45,7 +45,7 @@ export const SharedTrainingComments: FC<ISharedTrainingComments> = observer((
   const renderComments = () => {
 
     if (initialComments.length > 1 && !isCommentsVisible) {
-      return <Paragraph fontSize={ '1.3rem' } color={ theme.colors.brand.text600 } onClick={ enableComments }>
+      return <Paragraph fontSize={ '1.3rem' } color={ theme.colors.brand.text600 } onClick={ enableComments } cursor={'pointer'} hoverColor={theme.colors.brand.text100}>
         Zobacz wszystkie { initialComments.length } komentarze...
       </Paragraph>
     }
