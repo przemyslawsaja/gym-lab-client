@@ -133,5 +133,19 @@ export const SkeletonWrapper = styled.div`
     width: 100%;
     margin-left: 0;
   }
+
+
   
+`
+
+export const CheckedBookmark = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
+
+export const SharedTrainingSkeletonWrapper = styled.div`
+  @media ${device.laptopL} {
+    padding: 50px 200px 0 200px;
+  }
 `

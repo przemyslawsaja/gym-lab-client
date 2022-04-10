@@ -8,7 +8,7 @@ import { Workout } from '../pages/Workout/Workout';
 import { RenderRoutes } from './RenderRoutes';
 import { TrainingCreator } from '../pages/Trainings/TrainingCreator/TrainingCreator';
 import { Redirect, RouteProps } from 'react-router-dom';
-import { TrainingRecover } from '../pages/Trainings/TrainingDetails/TrainingRecovery/TrainingRecovery';
+import { TrainingShare } from '../pages/Trainings/TrainingDetails/TrainingShare/TrainingShare';
 import { ExerciseFinderPage } from '../pages/ExerciseFinder/ExerciseFinderPage';
 import React from 'react';
 import { observer } from 'mobx-react';
@@ -28,7 +28,7 @@ export enum ApplicationRoutePaths {
   TRAININGS = '/trainings',
   TRAINING_EXERCISES = '/trainings/:trainingId/exercises',
   TRAINING_BRAKES = '/trainings/:trainingId/brakes',
-  TRAINING_RECOVERY = '/trainings/:trainingId/recovery',
+  TRAINING_SHARE = '/trainings/:trainingId/share',
   TRAINING_HISTORY = '/trainingHistory',
   TRAINING_CREATOR = '/training-creator',
   WORKOUT = '/workout/:trainingId',
@@ -42,7 +42,7 @@ export const applicationRoutes: RouteProps[] = [
   { path: ApplicationRoutePaths.TRAINING_HISTORY, exact: true, component: TrainingHistory },
   { path: ApplicationRoutePaths.TRAINING_EXERCISES, exact: true, component: TrainingExercises },
   { path: ApplicationRoutePaths.TRAINING_BRAKES, exact: true, component: TrainingBrakes },
-  { path: ApplicationRoutePaths.TRAINING_RECOVERY, exact: true, component: TrainingRecover },
+  { path: ApplicationRoutePaths.TRAINING_SHARE, exact: true, component: TrainingShare },
   { path: ApplicationRoutePaths.TRAINING_CREATOR, exact: true, component: TrainingCreator },
   { path: ApplicationRoutePaths.ACCOUNT, exact: true, component: Account },
   { path: ApplicationRoutePaths.PROFILE, exact: true, component: Profile },

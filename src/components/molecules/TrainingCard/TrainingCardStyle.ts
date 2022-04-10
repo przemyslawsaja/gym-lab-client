@@ -89,3 +89,37 @@ export const CardOptions = styled.div`
 export const WorkoutBtnWrapper = styled.div`
   z-index: 10;
 `
+
+export const EmptyCard = styled.div`
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 25px;
+  padding: 20px 10px 20px 20px;
+  width: 100%;
+  max-width: ${ CardSize.maxWidth };
+  height: ${ CardSize.height };
+  background: ${ theme.colors.brand.background100 };
+  -webkit-box-shadow: 0px 3px 13px -4px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 3px 13px -4px rgba(0, 0, 0, 1);
+  box-shadow: 0px 3px 15px -10px rgba(0, 0, 0, 1);
+  transition: 0.2s ease-in;
+
+  @media ${device.tabletL} {
+    height: 350px;
+    gap: 40px;
+  }
+
+  &:hover ${CardBackgroundImage} {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    outline: 2px solid ${ theme.colors.brand.quaternary300 };
+    transform: scale(1.01);
+  }
+`

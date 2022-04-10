@@ -1,10 +1,20 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import { Training } from '../models/Training/Training';
-import { commentCommunityTrainingsUseCase, dislikeCommunityTrainingsUseCase, likeCommunityTrainingsUseCase, listCommunityTrainingsUseCase } from '../useCases';
+import {
+  assignSharedTrainingToUserUseCase,
+  commentCommunityTrainingsUseCase,
+  dislikeCommunityTrainingsUseCase,
+  likeCommunityTrainingsUseCase,
+  listCommunityTrainingsUseCase,
+  shareTrainingUseCase
+} from '../useCases';
 import { ISharedTraining } from '../useCases/community/listCommunityTrainingsUseCase';
 import { userStore } from './index';
 
 export class CommunityStore {
+  @observable
+  public description: string = '';
+
   @observable
   public sharedTrainings: ISharedTraining[] = [];
 
@@ -64,12 +74,37 @@ export class CommunityStore {
   }
 
   @action
+  public assignSharedTrainingToUser = async (training: string):Promise<void> => {
+    await assignSharedTrainingToUserUseCase.exec({
+      training,
+      user: userStore.id
+    })
+  }
+
+  @action
+  public shareTraining = async (training: string):Promise<void> => {
+    await shareTrainingUseCase.exec({
+      training,
+      description: this.description
+    })
+  }
+
+  @action
   public clearTrainingComment = ():void => {
     this.comment = ''
   }
 
+  /*
+   * Setters
+   */
+
   @action
   public setTrainingComment = (value: string): void => {
     this.comment = value;
+  }
+
+  @action
+  public setDescriptionComment = (value: string): void => {
+    this.description = value;
   }
 }

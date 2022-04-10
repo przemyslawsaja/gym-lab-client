@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import H1Proto from '../../components/atoms/H1/H1';
+import { device } from '../../devices/Breakpoints';
 
 export const H1 = styled(H1Proto)`
   position: relative;
@@ -16,14 +17,15 @@ export const H1 = styled(H1Proto)`
 `;
 
 export const AccountWrapper = styled.div`
-  width: 100%;
-  position: relative;
-  height: 550px;
-  text-align: center;
+  margin-top: 50px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   flex-direction: column;
+  gap: 50px;
+
+
+  @media ${ device.laptopL } {
+    width: 50%;
+  }
 `;
 
 export const TilesWrapper = styled.div`
@@ -32,3 +34,24 @@ export const TilesWrapper = styled.div`
   justify-content: space-evenly;
   flex-wrap: wrap;
 `;
+
+export const ProfileImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media ${ device.laptopL } {
+    justify-content: flex-start;
+    margin-left: 50px;
+  }
+`
+
+export const SignOutButton = styled.div`
+  @media ${ device.laptopL } {
+    position: fixed;
+    right: 100px;
+    bottom: 100px;
+    width: 300px;
+  }
+`

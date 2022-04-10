@@ -32,7 +32,7 @@ export const TrainingsList = observer(() => {
     }
   }
 
-  const renderTrainings = ():JSX.Element | JSX.Element[] => {
+  const renderTrainings = (): JSX.Element | JSX.Element[] => {
     if (isTrainingListLoading) {
       return <>
         <TrainingCardSkeleton/>
@@ -41,18 +41,21 @@ export const TrainingsList = observer(() => {
       </>
     }
 
-    return trainings.map(training => {
-      return (
-        <TrainingCard
-          id={ training.id }
-          key={ training.id }
-          name={ training.name }
-          duration={ training.duration }
-        />
-      )
-    })
-
+    return <>
+      { trainings.map(training => {
+        return (
+          <TrainingCard
+            id={ training.id }
+            key={ training.id }
+            name={ training.name }
+            duration={ training.duration }
+          />
+        )
+      }) }
+      <TrainingCard isEmpty={ true } emptyContent={ 'Dodaj trening' }/>
+    </>
   }
+
   return (
     <MainTemplate navigation={ trainingNavigation }>
       <TrainingsWrapper>

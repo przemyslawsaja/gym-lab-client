@@ -62,9 +62,9 @@ export const TrainingExerciseItem: FC<ITrainingExerciseItemProps> = observer(({ 
     }
 
     return <Link to={ `/${ id }/exercise-details` }>
-      <RoundButton radius='40px' type={ ButtonType.QUATERNARY }>
-        <IoChevronForwardSharp size={ '2.5rem' } color={ theme.colors.brand.background300 }/>
-      </RoundButton>
+      {/*<RoundButton radius='40px' type={ ButtonType.QUATERNARY }>*/}
+      {/*  <IoChevronForwardSharp size={ '2.5rem' } color={ theme.colors.brand.background300 }/>*/}
+      {/*</RoundButton>*/}
     </Link>
   }
 

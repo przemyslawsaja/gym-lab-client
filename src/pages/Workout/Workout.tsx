@@ -122,23 +122,30 @@ export const Workout = observer(() => {
   }
 
   if (isWorkoutFinished) {
-    return <Modal title={ '' }
-                  fillWindow
-                  backButton={ {
-                    content: 'Go back to your trainings',
-                    onClick: onWorkoutFinishModalClickHandler
-                  } }>
-      <CongratulationsMessage>
-        <Confetti
-          width={ width }
-          height={ height }
-          numberOfPieces={ 75 }
-        />
-        <H1> Gratulacje!</H1>
-        <Paragraph> Świetnie Ci poszło! do zobaczenia na kolejnym treningu.</Paragraph>
-        <CongratulationsImage/>
-      </CongratulationsMessage>
-    </Modal>
+    return <>
+      {isTabletDevice && <Confetti
+        width={ width }
+        height={ height }
+        numberOfPieces={ 75 }
+      />}
+      <Modal title={ '' }
+             fillWindow = {!isTabletDevice}
+             backButton={ {
+               content: 'Go back to your trainings',
+               onClick: onWorkoutFinishModalClickHandler
+             } }>
+        <CongratulationsMessage>
+          {!isTabletDevice && <Confetti
+            width={ width }
+            height={ height }
+            numberOfPieces={ 75 }
+          />}
+          <H1> Gratulacje!</H1>
+          <Paragraph> Świetnie Ci poszło! do zobaczenia na kolejnym treningu.</Paragraph>
+          <CongratulationsImage/>
+        </CongratulationsMessage>
+      </Modal>
+    </>
   }
 
   const workoutModeProps: IWorkoutModeNavigationProps = {

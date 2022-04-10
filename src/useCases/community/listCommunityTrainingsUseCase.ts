@@ -12,6 +12,7 @@ export interface ISharedTraining {
   likes: string[];
   author: string,
   comments: IComment[];
+  description: string,
   createdAt: string,
 }
 

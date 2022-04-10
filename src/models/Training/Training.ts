@@ -9,6 +9,9 @@ export class Training {
   public id: string = ''
 
   @observable
+  public parent: string = '';
+
+  @observable
   public name: string = '';
 
   @observable
@@ -26,6 +29,7 @@ export class Training {
   private constructor(training: ITraining) {
     makeAutoObservable(this)
     this.id = training.id;
+    this.parent = training.parent;
     this.name = training.name;
     this.description = training.description;
     this.duration = training.duration;
@@ -39,11 +43,12 @@ export class Training {
     }
     return new Training({
       id: '',
+      parent: '',
       name: '',
       description: '',
       duration: 0,
       break: 0,
-      exercises: []
+      exercises: [],
     })
   }
 

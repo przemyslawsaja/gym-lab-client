@@ -37,6 +37,11 @@ export const TrainingCreator = observer(() => {
   const history = useHistory();
   const { width } = useWindowSize();
 
+  const onTrainingCreateHandler = ():void => {
+    trainingStore.createTraining();
+    trainingStore.fetchUserTrainings();
+    history.push(ApplicationRoutePaths.TRAININGS)
+  }
   useEffect(() => {
     width >= deviceValues.tabletL
       ? setTabletDevice(true)
@@ -54,8 +59,7 @@ export const TrainingCreator = observer(() => {
       },
       right: {
         icon: FiCheck, onClick() {
-          trainingStore.createTraining();
-          history.push(ApplicationRoutePaths.TRAININGS)
+          onTrainingCreateHandler();
         }
       },
       hideOnDesktop: true
@@ -144,7 +148,7 @@ export const TrainingCreator = observer(() => {
         </Modal> }
 
         <TrainingCreatorFooter>
-          {isTabletDevice && <Button content={'Zapisz trening'} type={ButtonType.QUATERNARY} />}
+          {isTabletDevice && <Button content={'Zapisz trening'} type={ButtonType.QUATERNARY} onClick={onTrainingCreateHandler} />}
         </TrainingCreatorFooter>
       </TrainingCreatorSection>
 

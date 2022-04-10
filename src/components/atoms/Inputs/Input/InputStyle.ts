@@ -27,7 +27,13 @@ export const StyledInput = styled.input<{prefix?: string}>`
     -webkit-box-shadow: 0 0 0 30px ${colors.brand.background300} inset !important;
     -webkit-text-fill-color: #fff;
   }
-  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
   font-size: 1.5rem;
   position: absolute;
   top: 0;

@@ -5,6 +5,7 @@ import { communityStore } from '../../stores';
 import { SharedTraining } from '../../components/molecules/SharedTraining/SharedTraining';
 import { observer } from 'mobx-react';
 import { SharedTrainingSkeleton } from '../../components/molecules/SharedTraining/SharedTrainingSkeleton';
+import { SharedTrainingSkeletonWrapper } from '../../components/molecules/SharedTraining/SharedTrainingStyle'
 
 const trainingNavigation: IHeaderNavigationProps = {
   title: "Społeczność",
@@ -18,12 +19,12 @@ export const Community = observer(() => {
 
   const renderSharedTrainings = (): JSX.Element=> {
     if (communityStore.isCommunityLoading) {
-      return <div>
+      return <SharedTrainingSkeletonWrapper>
         <SharedTrainingSkeleton />
         <SharedTrainingSkeleton />
         <SharedTrainingSkeleton />
         <SharedTrainingSkeleton />
-      </div>;
+      </SharedTrainingSkeletonWrapper>;
     }
 
     return <>
