@@ -1,7 +1,7 @@
 # GymLab
 
-
-![](src/assets/img/app-preview.png)
+![](src/assets/img/mobilePreview.png)
+![](src/assets/img/DesktopPreview.png)
 
 ## Demo
 
