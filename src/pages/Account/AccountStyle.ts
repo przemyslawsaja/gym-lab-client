@@ -20,7 +20,7 @@ export const AccountWrapper = styled.div`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 
 
   @media ${ device.laptopL } {
