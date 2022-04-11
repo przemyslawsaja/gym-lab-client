@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import H1 from '../../atoms/H1/H1';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { theme } from '../../../theme/MainTheme';
-import { Card, CardBackgroundImage, CardContent, CardDetails, CardOptions, EmptyCard, WorkoutBtnWrapper } from './TrainingCardStyle'
+import { Card, CardBackgroundImage, CardContent, CardDetails, CardOptions, EmptyCard, WorkoutBtnWrapper, DetailsLabel } from './TrainingCardStyle'
 import { Button, RoundButton } from '../../atoms';
 import { useHistory } from 'react-router-dom';
 import { ButtonType } from '../../atoms/Button/Button';
@@ -10,6 +10,8 @@ import { BsPlayCircle } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineAddCircleOutline } from 'react-icons/all';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
+import { useWindowSize } from '../../../hooks';
+import { deviceValues } from '../../../devices/Breakpoints';
 
 interface ITrainingCardProps {
   id?: string,
@@ -21,6 +23,30 @@ interface ITrainingCardProps {
 
 const TrainingCard: FC<ITrainingCardProps> = ({ name, duration, id, isEmpty, emptyContent }) => {
   const history = useHistory()
+  const [isMobileDevice, setMobileDevice] = useState<boolean>(true);
+
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    width <= deviceValues.mobileM
+      ? setMobileDevice(true)
+      : setMobileDevice(false)
+  }, [width])
+
+
+  const renderTrainingName = (): string => {
+    const MAX_MOBILE_TRAINING_NAME_LENGTH = 13;
+
+    if(!name) {
+      return '';
+    }
+
+    if(isMobileDevice &&  name?.length > MAX_MOBILE_TRAINING_NAME_LENGTH ){
+       return `${name.slice(0, MAX_MOBILE_TRAINING_NAME_LENGTH).toUpperCase()}...`
+    }
+
+    return name.toUpperCase()
+  }
 
   if (isEmpty) {
     return <EmptyCard onClick={ () => history.push(ApplicationRoutePaths.TRAINING_CREATOR) }>
@@ -37,12 +63,12 @@ const TrainingCard: FC<ITrainingCardProps> = ({ name, duration, id, isEmpty, emp
       <CardContent>
         <CardDetails>
           <div>
-            <H1>{ name && name.toUpperCase() }</H1>
-            <Paragraph>Nazwa</Paragraph>
+            <H1> { renderTrainingName()}</H1>
+            <DetailsLabel><Paragraph>Nazwa</Paragraph></DetailsLabel>
           </div>
           <div>
             <H1 color={ theme.colors.brand.quaternary300 }>{ duration } min</H1>
-            <Paragraph>Długość treningu</Paragraph>
+            <DetailsLabel><Paragraph>Długość treningu</Paragraph></DetailsLabel>
           </div>
         </CardDetails>
 

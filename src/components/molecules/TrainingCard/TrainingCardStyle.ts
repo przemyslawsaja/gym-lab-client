@@ -23,8 +23,8 @@ export const CardBackgroundImage = styled.div`
   background-size: cover;
   border-radius: 0 25px 25px 0;
   transition: 0.2s ease-in;
-  
-  @media ${device.tabletL} {
+
+  @media ${ device.tabletL } {
     width: 100%;
     height: 60%;
     border-radius: 25px 25px 0 0;
@@ -32,7 +32,7 @@ export const CardBackgroundImage = styled.div`
 `
 
 export const Card = styled.div`
-  position: relative; 
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,17 +46,17 @@ export const Card = styled.div`
   -moz-box-shadow: 0px 3px 13px -4px rgba(0, 0, 0, 1);
   box-shadow: 0px 3px 15px -10px rgba(0, 0, 0, 1);
   transition: 0.2s ease-in;
-  
-  @media ${device.tabletL} {
+
+  @media ${ device.tabletL } {
     height: 350px;
     display: flex;
     align-items: flex-end;
   }
 
-  &:hover ${CardBackgroundImage} {
+  &:hover ${ CardBackgroundImage } {
     opacity: 0.5;
   }
-  
+
   &:hover {
     outline: 2px solid ${ theme.colors.brand.quaternary300 };
     transform: scale(1.01);
@@ -71,9 +71,17 @@ export const CardContent = styled.div`
 export const CardDetails = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   p {
     font-size: 1.4rem;
+  }
+`
+
+export const DetailsLabel = styled.div`
+  display: none;
+  
+  @media ${ device.mobileS } {
+   display: inline-block;
   }
 `
 
@@ -109,12 +117,12 @@ export const EmptyCard = styled.div`
   box-shadow: 0px 3px 15px -10px rgba(0, 0, 0, 1);
   transition: 0.2s ease-in;
 
-  @media ${device.tabletL} {
+  @media ${ device.tabletL } {
     height: 350px;
     gap: 40px;
   }
 
-  &:hover ${CardBackgroundImage} {
+  &:hover ${ CardBackgroundImage } {
     opacity: 0.5;
   }
 
