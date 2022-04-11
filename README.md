@@ -1,7 +1,5 @@
 # GymLab
 
-## Preview
-
 ![](src/assets/img/mobilePreview.png)
 ![](src/assets/img/DesktopPreview.png)
 
