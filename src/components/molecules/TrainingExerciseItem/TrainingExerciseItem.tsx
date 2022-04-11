@@ -50,8 +50,8 @@ export const TrainingExerciseItem: FC<ITrainingExerciseItemProps> = observer(({ 
     if (isEditModeEnabled) {
       return <>
         <ExercisesEditButtons>
-          <RoundButton radius='40px' type={ ButtonType.WHITE } borderRadius={ '10px' }>
-            <AiFillEdit size={ '2rem' } color={ theme.colors.brand.background100 } onClick={ onExerciseEditHandler }/>
+          <RoundButton radius='40px' type={ ButtonType.WHITE } borderRadius={ '10px' } onClick={ onExerciseEditHandler }>
+            <AiFillEdit size={ '2rem' } color={ theme.colors.brand.background100 }/>
           </RoundButton>
 
           <RoundButton radius='40px' type={ ButtonType.RED } borderRadius={ '10px' } onClick={ () => setExerciseDeleteModal(true) }>
