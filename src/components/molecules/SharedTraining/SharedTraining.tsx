@@ -80,7 +80,7 @@ export const SharedTraining: FC<ISharedTrainingProps> = observer(({ training: sh
     switch (true) {
       case initialLikes === 1:
         return "Polubienie";
-      case (initialLikes > 1 && initialLikes < 4):
+      case (initialLikes > 1 && initialLikes <= 4):
         return "Polubienia";
       case (initialLikes > 4 || initialLikes === 0):
         return "Polubień"

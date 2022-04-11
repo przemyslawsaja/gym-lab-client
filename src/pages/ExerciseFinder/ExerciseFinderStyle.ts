@@ -32,7 +32,7 @@ export const FinderSearch = styled.div<{type?: ExerciseFinderType}>`
   }
 `
 
-export const ExercisesContainer = styled.div`
+export const ExercisesContainer = styled.div<{isModal: boolean}>`
   margin-top: 80px;
   position: relative;
   width: 100%;
@@ -46,6 +46,10 @@ export const ExercisesContainer = styled.div`
 
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
+  }
+
+  @media ${device.tabletL} {
+   margin-bottom: ${({isModal}) => isModal ? 0 : '200px'};
   }
 `
 

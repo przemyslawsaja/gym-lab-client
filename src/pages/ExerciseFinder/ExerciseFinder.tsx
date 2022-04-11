@@ -88,7 +88,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
             />
           </FinderSearch>
 
-          <ExercisesContainer>
+          <ExercisesContainer isModal={type === ExerciseFinderType.MODAL}>
             { renderExercises() }
           </ExercisesContainer>
         </FinderContainer>
