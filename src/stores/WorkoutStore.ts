@@ -69,7 +69,6 @@ export class WorkoutStore {
     })
 
     this.exerciseSetsMap.clear();
-    console.log(this.historyExercises);
   }
 
   @action
