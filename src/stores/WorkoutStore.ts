@@ -2,6 +2,9 @@ import { action, computed, makeAutoObservable, observable } from 'mobx';
 import { Training } from '../models/Training/Training';
 import { Exercise } from '../models/Exercise/Exercise';
 import { DEFAULT_BRAKE_TIMER_VALUE } from '../common/Constants';
+import { IHistoryExercise } from '../useCases/training/createHistoryTrainingUseCase';
+import { createHistoryTrainingsUseCase } from '../useCases';
+import { userStore } from './index';
 
 export class WorkoutStore {
 
@@ -21,6 +24,9 @@ export class WorkoutStore {
   public isWorkoutFinished: boolean = false;
 
   @observable
+  public exerciseSetsMap: Map<number, { reps: number, weight: number}> = new Map();
+
+  @observable
   public isTimerEnabled: boolean = false;
 
   @observable
@@ -28,6 +34,9 @@ export class WorkoutStore {
 
   @observable
   public maxTimerValue: number = DEFAULT_BRAKE_TIMER_VALUE;
+
+  @observable
+  public historyExercises: IHistoryExercise[] = []
 
   @observable
   public timerInterval: number = 0;
@@ -53,7 +62,29 @@ export class WorkoutStore {
   }
 
   @action
+  public addExerciseToHistory = () => {
+    this.historyExercises.push({
+      label: this.currentExercise.name,
+      sets: Array.from(this.exerciseSetsMap.values())
+    })
+
+    this.exerciseSetsMap.clear();
+    console.log(this.historyExercises);
+  }
+
+  @action
+  public addTrainingToHistory = async (): Promise<void> => {
+    await createHistoryTrainingsUseCase.exec({
+      user: userStore.id,
+      exercises: this.historyExercises
+    })
+
+    this.historyExercises = [];
+  }
+
+  @action
   public nextExercise = ():void => {
+    this.addExerciseToHistory();
     this.currentExercise = this.training.exercises[this.currentExerciseNumber + 1];
     this.currentExerciseNumber++;
   }

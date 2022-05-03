@@ -1,16 +1,25 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { WorkoutTableRowItem, WorkoutTableRowItemNumber, WorkoutTableRowWrapper } from './WorkoutTableRowStyle';
 import { Input } from '../../atoms/Inputs/Input/Input';
 import { IExerciseSet } from '../../organisms/ExerciseSetsModal/ExerciseSet';
+import { workoutStore } from '../../../stores';
+import { observer } from 'mobx-react';
 
 interface IWorkoutTableRow {
   set: IExerciseSet;
   number: number
 }
 
-export const WorkoutTableRow: FC<IWorkoutTableRow> = ({ set, number }) => {
+export const WorkoutTableRow: FC<IWorkoutTableRow> = observer(({ set, number }) => {
   const [weight, setWeight] = useState<number>(set.weight);
-  const [reps, setReps] = useState<number>();
+  const [reps, setReps] = useState<number>(0);
+  const { exerciseSetsMap } = workoutStore;
+
+  useEffect(() => {
+    exerciseSetsMap.set(number, {
+      reps: isNaN(reps) ? 0 : reps,
+      weight: isNaN(reps) ? 0 : weight })
+  }, [weight, reps])
 
   return <WorkoutTableRowWrapper>
     <WorkoutTableRowItem>
@@ -26,5 +35,5 @@ export const WorkoutTableRow: FC<IWorkoutTableRow> = ({ set, number }) => {
     </WorkoutTableRowItem>
   </WorkoutTableRowWrapper>
 
-}
+})
 

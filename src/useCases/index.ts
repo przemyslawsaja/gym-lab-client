@@ -10,6 +10,8 @@ import { DislikeCommunityTrainingsUseCase } from './community/unlikeCommunityTra
 import { CommentCommunityTrainingsUseCase } from './community/commentCommunityTrainingUseCase';
 import { AssignSharedTrainingToUserUseCase } from './community/assignSharedTrainingToUserUseCase';
 import { ShareTrainingUseCase } from './community/shareTrainingUseCase';
+import { CreateHistoryTrainingsUseCase } from './training/createHistoryTrainingUseCase';
+import { ListUserHistoryTrainingsUseCase } from './training/listHistoryTrainingsUseCase';
 
 export const loginUseCase = new LoginUseCase();
 export const registerUseCase = new RegisterUseCase();
@@ -23,3 +25,5 @@ export const dislikeCommunityTrainingsUseCase = new DislikeCommunityTrainingsUse
 export const commentCommunityTrainingsUseCase = new CommentCommunityTrainingsUseCase();
 export const assignSharedTrainingToUserUseCase = new AssignSharedTrainingToUserUseCase();
 export const shareTrainingUseCase = new ShareTrainingUseCase();
+export const listUserHistoryTrainingsUseCase = new ListUserHistoryTrainingsUseCase();
+export const createHistoryTrainingsUseCase = new CreateHistoryTrainingsUseCase();

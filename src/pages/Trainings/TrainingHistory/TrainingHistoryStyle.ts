@@ -2,8 +2,13 @@ import styled from 'styled-components';
 
 export const TrainingHistoryWrapper = styled.div`
   position: relative;
-  left: 50%;
-  top: 35%;
-  text-align: center;
-  transform: translate(-50%, -35%);
+  height: 100%;
+`
+
+export const EmptyHistory = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
 `

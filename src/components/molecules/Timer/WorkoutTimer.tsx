@@ -7,12 +7,12 @@ import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { theme } from '../../../theme/MainTheme';
 import { observer } from 'mobx-react';
 
-interface IWourkoutTimer {
+interface IWorkoutTimer {
   breakTime: number,
   radius?: number
 }
 
-export const WorkoutTimer: FC<IWourkoutTimer> = observer(({ breakTime, radius }) => {
+export const WorkoutTimer: FC<IWorkoutTimer> = observer(({ breakTime, radius }) => {
   const { quaternary300, background500 } = theme.colors.brand;
   return (
     <>

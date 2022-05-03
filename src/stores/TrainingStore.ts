@@ -1,9 +1,10 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import { Exercise } from '../models/Exercise/Exercise';
 import { Training } from '../models/Training/Training';
-import { createUserTrainingUseCase, getTrainingByIdUseCase, listUserTrainingsUseCase } from '../useCases';
+import { createUserTrainingUseCase, getTrainingByIdUseCase, listUserHistoryTrainingsUseCase, listUserTrainingsUseCase } from '../useCases';
 import { userStore } from './index';
 import { updateTrainingsUseCase } from '../useCases/training/updateTrainingUseCase';
+import { IHistoryTraining } from '../useCases/training/listHistoryTrainingsUseCase';
 
 export class TrainingStore {
   @observable
@@ -37,6 +38,9 @@ export class TrainingStore {
   public trainings: Training[] = [];
 
   @observable
+  public historyTrainings: IHistoryTraining[] = [];
+
+  @observable
   public isTrainingListLoading: boolean = true;
 
   @observable
@@ -57,6 +61,15 @@ export class TrainingStore {
       return Training.createNewTraining(training)
     })
     this.isTrainingListLoading = false;
+  }
+
+  @action
+  public fetchUserHistoryTrainings = async (): Promise<void> => {
+    const { trainings } = await listUserHistoryTrainingsUseCase.exec({
+      user: userStore.id
+    })
+
+    this.historyTrainings = trainings;
   }
 
   public getTrainingExercisesPayload = () => {
@@ -87,7 +100,6 @@ export class TrainingStore {
       }
     )
   }
-
 
   public updateUserTraining = async (): Promise<void> => {
     await updateTrainingsUseCase.exec({
@@ -147,7 +159,7 @@ export class TrainingStore {
   }
 
   @action
-  public clearTraining = ():void => {
+  public clearTraining = (): void => {
     this.name = '';
     this.description = '';
     this.brake = 0;

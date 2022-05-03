@@ -20,14 +20,14 @@ import {
   CongratulationsImage,
   CongratulationsMessage,
   WorkoutFooter,
+  WorkoutFooterWrapper,
   WorkoutHeader,
   WorkoutHeaderLine,
   WorkoutHeaderTitle,
   WorkoutTable,
   WorkoutTableBody,
   WorkoutTableHeader,
-  WorkoutWrapper,
-  WorkoutFooterWrapper
+  WorkoutWrapper
 } from './WorkoutStyle'
 import { deviceValues } from '../../devices/Breakpoints';
 import { Button, RoundButton } from '../../components/atoms';
@@ -64,7 +64,8 @@ export const Workout = observer(() => {
     enableTimer,
     maxTimerValue,
     isFinalExercise,
-    isFirstExercise
+    isFirstExercise,
+    addTrainingToHistory
   } = workoutStore;
 
   useEffect(() => {
@@ -91,7 +92,8 @@ export const Workout = observer(() => {
     return isFinalExercise()
       ? {
         icon: MdCheck, onClick() {
-          setWorkoutAsFinished();
+          addTrainingToHistory()
+            .then(() => setWorkoutAsFinished());
         },
         content: "Zakończ trening"
       }
@@ -105,7 +107,7 @@ export const Workout = observer(() => {
 
   const workoutNavigation: IHeaderNavigationProps = {
     title: "Tryb treningowy",
-    subtitle: `${ incrementedExerciseNumber } z ${ training.exercises.length } ${ isTabletDevice && 'ćwiczeń' }`,
+    subtitle: `${ incrementedExerciseNumber } z ${ training.exercises.length } ${ isTabletDevice ? 'ćwiczeń' : '' }`,
     buttons: {
       left: isTabletDevice ? undefined : getLeftNavigationButton(),
       right: isTabletDevice ? undefined : getRightNavigationButton()
@@ -123,23 +125,23 @@ export const Workout = observer(() => {
 
   if (isWorkoutFinished) {
     return <>
-      {isTabletDevice && <Confetti
+      { isTabletDevice && <Confetti
         width={ width }
         height={ height }
         numberOfPieces={ 75 }
-      />}
+      /> }
       <Modal title={ '' }
-             fillWindow = {!isTabletDevice}
+             fillWindow={ !isTabletDevice }
              backButton={ {
                content: 'Go back to your trainings',
                onClick: onWorkoutFinishModalClickHandler
              } }>
         <CongratulationsMessage>
-          {!isTabletDevice && <Confetti
+          { !isTabletDevice && <Confetti
             width={ width }
             height={ height }
             numberOfPieces={ 75 }
-          />}
+          /> }
           <H1> Gratulacje!</H1>
           <Paragraph> Świetnie Ci poszło! do zobaczenia na kolejnym treningu.</Paragraph>
           <CongratulationsImage/>
@@ -171,7 +173,7 @@ export const Workout = observer(() => {
     <WorkoutWrapper>
       <CarouselContainer>
         <CarouselWrapper>
-          <Carousel showThumbs={ false } showStatus={ false } autoPlay infiniteLoop >
+          <Carousel showThumbs={ false } showStatus={ false } autoPlay infiniteLoop>
             { currentExercise.images.map((img, idx) => <img src={ img } alt={ currentExercise.name } key={ idx }/>) }
           </Carousel>
         </CarouselWrapper>
