@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, RouteProps } from 'react-router-dom';
-import { SignIn } from '../pages/Authorization/Login/SignIn';
-import { Registration } from '../pages/Authorization/Registration/Registration';
+import { SignIn } from '../views/authorization/sign-in';
+import { Registration } from '../views/authorization/registration';
 import { RenderRoutes } from './RenderRoutes';
 
 export enum AuthorizationRoutePaths  {

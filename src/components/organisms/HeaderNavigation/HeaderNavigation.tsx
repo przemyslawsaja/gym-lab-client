@@ -4,7 +4,7 @@ import { HeaderContent, HeaderWrapper, BigButtonWrapper } from './HeaderNavigati
 import { Button, RoundButton } from '../../atoms';
 import { IHeaderButtons } from './__types__';
 import { ButtonType } from '../../atoms/Button/Button';
-import { HEADER_NAVIGATION } from '../../../common/Constants';
+import { HEADER_NAVIGATION } from '../../../constants';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { deviceValues } from '../../../devices/Breakpoints';

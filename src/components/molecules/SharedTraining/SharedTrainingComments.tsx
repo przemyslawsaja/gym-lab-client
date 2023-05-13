@@ -1,7 +1,7 @@
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { theme } from '../../../theme/MainTheme';
 import React, { FC, useEffect, useState } from 'react';
-import { IComment } from '../../../useCases/community/listCommunityTrainingsUseCase';
+import { IComment } from '../../../api/use-cases/community/listCommunityTrainingsUseCase';
 import { observer } from 'mobx-react';
 import * as Styled from './SharedTrainingStyle';
 import { Input } from '../../atoms/Inputs/Input/Input';

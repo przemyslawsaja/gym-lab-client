@@ -1,19 +1,18 @@
-import { Account } from '../pages/Account/Account';
-import { Profile } from '../pages/Profile/Profile';
-import { TrainingsList } from '../pages/Trainings/TrainingsList/TrainingsList';
-import { TrainingExercises } from '../pages/Trainings/TrainingDetails/TrainingExercises/TrainingExercises'
-import { TrainingBrakes } from '../pages/Trainings/TrainingDetails/TrainingBrakes/TrainingBrakes';
-import { TrainingHistory } from '../pages/Trainings/TrainingHistory/TrainingHistory';
-import { Workout } from '../pages/Workout/Workout';
+import { Account } from '../views/account';
+import { TrainingsList } from '../views/trainings/training-list';
+import { TrainingExercises } from '../views/trainings/training-details/training-exercises'
+import { TrainingBrakes } from '../views/trainings/training-details/training-brakes';
+import { TrainingHistory } from '../views/trainings/training-history';
+import { Workout } from '../views/workout';
 import { RenderRoutes } from './RenderRoutes';
-import { TrainingCreator } from '../pages/Trainings/TrainingCreator/TrainingCreator';
+import { TrainingCreator } from '../views/trainings/training-creator';
 import { Redirect, RouteProps } from 'react-router-dom';
-import { TrainingShare } from '../pages/Trainings/TrainingDetails/TrainingShare/TrainingShare';
-import { ExerciseFinderPage } from '../pages/ExerciseFinder/ExerciseFinderPage';
+import { TrainingShare } from '../views/trainings/training-details/training-share';
+import { ExerciseFinderPage } from '../views/exercise-finder';
 import React from 'react';
 import { observer } from 'mobx-react';
 import { userStore } from '../stores';
-import { Community } from '../pages/Community/Community';
+import { Community } from '../views/community';
 
 export enum ApplicationRoutePaths {
   HOME = '/',
@@ -24,7 +23,6 @@ export enum ApplicationRoutePaths {
   EXERCISE_FINDER = '/exercise-finder',
   SETTINGS = '/settings',
   STATISTICS = '/statistics',
-  PROFILE = '/profile',
   TRAININGS = '/trainings',
   TRAINING_EXERCISES = '/trainings/:trainingId/exercises',
   TRAINING_BRAKES = '/trainings/:trainingId/brakes',
@@ -45,7 +43,6 @@ export const applicationRoutes: RouteProps[] = [
   { path: ApplicationRoutePaths.TRAINING_SHARE, exact: true, component: TrainingShare },
   { path: ApplicationRoutePaths.TRAINING_CREATOR, exact: true, component: TrainingCreator },
   { path: ApplicationRoutePaths.ACCOUNT, exact: true, component: Account },
-  { path: ApplicationRoutePaths.PROFILE, exact: true, component: Profile },
   { path: ApplicationRoutePaths.WORKOUT, exact: true, component: Workout },
   { path: ApplicationRoutePaths.COMMUNITY, exact: true, component: Community },
   { path: '', exact: false, component: () => <Redirect to={ ApplicationRoutePaths.TRAININGS }/> },

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import React, { FC, useEffect, useState } from 'react';
 import * as Styled from './SharedTrainingStyle'
-import { ISharedTraining } from '../../../useCases/community/listCommunityTrainingsUseCase';
+import { ISharedTraining } from '../../../api/use-cases/community/listCommunityTrainingsUseCase';
 import ProfileImageSrc from '../../../assets/img/user.png';
 import ProfileImage from '../../atoms/ProfileImage/ProfileImage';
 import Paragraph from '../../atoms/Paragraph/Paragraph';

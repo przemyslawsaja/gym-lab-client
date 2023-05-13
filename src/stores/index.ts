@@ -1,10 +1,10 @@
-import { UserStore } from './UserStore';
-import { AuthorizationStore } from './AuthorizationStore';
-import { TrainingStore } from './TrainingStore'
-import { ExerciseFinderStore } from './ExerciseFinderStore';
-import { ExerciseSetsStore } from './ExerciseSetsStore';
-import { WorkoutStore } from './WorkoutStore';
-import { CommunityStore } from './CommunityStore';
+import { UserStore } from './user-store';
+import { AuthorizationStore } from './authorization-store';
+import { TrainingStore } from './training-store'
+import { ExerciseFinderStore } from './exercise-finder-store';
+import { ExerciseSetsStore } from './exercise-sets-store';
+import { WorkoutStore } from './workout-store';
+import { CommunityStore } from './community-store';
 
 export const userStore = new UserStore();
 export const authorizationStore = new AuthorizationStore();

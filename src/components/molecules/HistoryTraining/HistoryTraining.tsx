@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import React, { FC, useState } from 'react';
 import * as Styled from './HistoryTraining.styled';
-import { IHistoryTraining } from '../../../useCases/training/listHistoryTrainingsUseCase';
+import { IHistoryTraining } from '../../../api/use-cases/training/listHistoryTrainingsUseCase';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/all';
 import { theme } from '../../../theme/MainTheme';
