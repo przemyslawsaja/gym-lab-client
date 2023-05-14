@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { AuthorizationTemplate } from '../../../templates'
 import { observer } from 'mobx-react';
 import { authorizationStore } from '../../../stores';
@@ -8,8 +8,10 @@ import { AuthorizationRoutePaths } from '../../../routes/authorizationRoutes';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
+import { LoadingScreen } from "../../../components/atoms/loading-screen";
 
 export const SignIn: FC = observer(() => {
+    const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory()
 
@@ -25,9 +27,11 @@ export const SignIn: FC = observer(() => {
       primary: {
         content: "Login",
         onClick() {
+          setIsLoading(true)
           signIn()
             .then(() => toast.success('Logged successfully'))
             .then(() => history.push(ApplicationRoutePaths.HOME))
+            .finally(() => setIsLoading(false))
         }
       },
       secondary: {
@@ -38,12 +42,13 @@ export const SignIn: FC = observer(() => {
       }
     }
 
-    return (
-      <AuthorizationTemplate buttons={ signInButtons }>
-          <Input value={ username } onChange={ e => setUsername(e.target.value) } label={ 'Username' } type={ 'text' }/>
-          <Input value={ password } onChange={ e => setPassword(e.target.value) } label={ 'Password' } type={ 'password' }/>
-      </AuthorizationTemplate>
-    )
+    return <>
+        {isLoading && <LoadingScreen />}
+        <AuthorizationTemplate buttons={ signInButtons }>
+            <Input value={ username } onChange={ e => setUsername(e.target.value) } label={ 'Username' } type={ 'text' }/>
+            <Input value={ password } onChange={ e => setPassword(e.target.value) } label={ 'Password' } type={ 'password' }/>
+        </AuthorizationTemplate>
+    </>
   }
 )
 
