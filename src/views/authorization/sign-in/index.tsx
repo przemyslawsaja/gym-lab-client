@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react';
 import { AuthorizationTemplate } from '../../../templates'
 import { observer } from 'mobx-react';
 import { authorizationStore } from '../../../stores';
-import { Input } from '../../../components/atoms/Inputs/Input/Input';
-import { IAuthorizationTemplateButtons } from '../../../templates/authorization-template/AuthorizationTemplate';
+import { Input } from '../../../components/atoms/inputs/input';
+import { IAuthorizationTemplateButtons } from '../../../templates/authorization-template';
 import { AuthorizationRoutePaths } from '../../../routes/authorizationRoutes';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';

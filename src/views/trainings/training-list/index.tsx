@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { TrainingsWrapper } from './styles'
 import { MainTemplate } from '../../../templates'
-import TrainingCard from '../../../components/molecules/TrainingCard/TrainingCard'
+import TrainingCard from '../../../components/molecules/training-card/TrainingCard'
 import { observer } from 'mobx-react';
 import { IoAddSharp } from 'react-icons/all';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
 import { trainingStore } from '../../../stores';
-import TrainingCardSkeleton from '../../../components/molecules/TrainingCard/Skeleton/TrainingCardSkeleton';
+import TrainingCardSkeleton from '../../../components/molecules/training-card/Skeleton/TrainingCardSkeleton';
 
 export const TrainingsList = observer(() => {
   const history = useHistory();
@@ -35,7 +35,9 @@ export const TrainingsList = observer(() => {
   const renderTrainings = (): JSX.Element | JSX.Element[] => {
     if (isTrainingListLoading) {
       return <>
-        Loading...
+        <TrainingCardSkeleton />
+        <TrainingCardSkeleton />
+        <TrainingCardSkeleton />
       </>
     }
 
@@ -47,6 +49,7 @@ export const TrainingsList = observer(() => {
             key={ training.id }
             name={ training.name }
             duration={ training.duration }
+            trainable={training.exercises.length > 0}
           />
         )
       }) }

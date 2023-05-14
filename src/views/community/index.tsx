@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { MainTemplate } from '../../templates';
-import { IHeaderNavigationProps } from '../../components/organisms/HeaderNavigation/HeaderNavigation';
+import { IHeaderNavigationProps } from '../../components/organisms/header-navigation';
 import { communityStore } from '../../stores';
-import { SharedTraining } from '../../components/molecules/SharedTraining/SharedTraining';
+import { SharedTraining } from '../../components/molecules/shared-training';
 import { observer } from 'mobx-react';
-import { SharedTrainingSkeleton } from '../../components/molecules/SharedTraining/SharedTrainingSkeleton';
-import { SharedTrainingSkeletonWrapper } from '../../components/molecules/SharedTraining/SharedTrainingStyle'
+import { SharedTrainingSkeleton } from '../../components/molecules/shared-training/skeleton';
+import { SharedTrainingSkeletonWrapper } from '../../components/molecules/shared-training/styles'
 
 const trainingNavigation: IHeaderNavigationProps = {
   title: "Społeczność",

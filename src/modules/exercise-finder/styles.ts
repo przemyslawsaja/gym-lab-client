@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { ExerciseFinderType } from './index';
-import { theme } from '../../theme/MainTheme';
+import { theme } from '../../theme/main-theme';
 import { device } from '../../devices/Breakpoints';
 
 export const ExerciseFinderWrapper = styled.div`
@@ -27,7 +27,7 @@ export const FinderSearch = styled.div<{type?: ExerciseFinderType}>`
   background: ${theme.colors.brand.background300};
 
   @media ${device.tabletL} {
-    top: ${ props => props.type === ExerciseFinderType.MODAL ? '80px' : '200px' };
+    top: ${ props => props.type === ExerciseFinderType.MODAL ? '80px' : '11.5rem' };
     padding-left: ${ props => props.type === ExerciseFinderType.MODAL ? 0 : '120px' };
   }
 `

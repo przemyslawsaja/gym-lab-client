@@ -39,7 +39,7 @@ export class WorkoutStore {
   public historyExercises: IHistoryExercise[] = []
 
   @observable
-  public timerInterval: number = 0;
+  public timerInterval: any = 0;
 
   constructor() {
     makeAutoObservable(this)
@@ -118,14 +118,13 @@ export class WorkoutStore {
   public setTimerInterval = ():void => {
     this.maxTimerValue = this.training.break
     this.setTimerValue();
-    this.timerInterval = 0;
-    // this.timerInterval  = setInterval(() => {
-    //   this.timerValue--;
-    //   if(this.timerValue <= 0 ) {
-    //     this.timerValue = 0;
-    //     this.clearTimerInterval();
-    //   }
-    // }, 1000);
+    this.timerInterval = setInterval(() => {
+      this.timerValue--;
+      if(this.timerValue <= 0 ) {
+        this.timerValue = 0;
+        this.clearTimerInterval();
+      }
+    }, 1000);
   }
 
   @action

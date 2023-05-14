@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { MainTemplate } from '../../templates';
-import { IHeaderNavigationProps } from '../../components/organisms/HeaderNavigation/HeaderNavigation';
+import { IHeaderNavigationProps } from '../../components/organisms/header-navigation';
 import { Button } from '../../components/atoms';
 import { trainingStore, userStore } from '../../stores';
 import { useHistory } from 'react-router-dom';
 import { AuthorizationRoutePaths } from '../../routes/authorizationRoutes';
-import { Input } from '../../components/atoms/Inputs/Input/Input';
+import { Input } from '../../components/atoms/inputs/input';
 import * as Styled from './styles'
 import { observer } from 'mobx-react';
-import ProfileImage from '../../components/atoms/ProfileImage/ProfileImage';
+import ProfileImage from '../../components/atoms/profile-image';
 import ProfileImageSrc from '../../assets/img/user.png';
 
 const accountNavigation: IHeaderNavigationProps = {

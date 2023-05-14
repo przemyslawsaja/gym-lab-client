@@ -1,5 +1,5 @@
 import { IExercise } from './__types__';
-import { IExerciseSet } from '../../components/organisms/ExerciseSetsModal/ExerciseSet';
+import { IExerciseSet } from '../../components/organisms/exercise-sets-modal/components/exercise-set';
 import { makeAutoObservable, observable } from 'mobx';
 
 export class Exercise {

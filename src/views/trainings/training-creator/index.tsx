@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react';
 import { MainTemplate } from '../../../templates';
 import React, { useEffect, useState } from 'react';
-import { Input } from '../../../components/atoms/Inputs/Input/Input';
-import Paragraph from '../../../components/atoms/Paragraph/Paragraph';
-import { theme } from '../../../theme/MainTheme';
+import { Input } from '../../../components/atoms/inputs/input';
+import Paragraph from '../../../components/atoms/paragraph';
+import { theme } from '../../../theme/main-theme';
 import {
   DesktopCardsWrapper,
   EmptyExercises,
@@ -21,14 +21,14 @@ import { Button } from '../../../components/atoms';
 import { FiCheck, IoIosAddCircleOutline } from 'react-icons/all';
 import { ApplicationRoutePaths } from '../../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
-import TrainingCreatorExerciseCard from '../../../components/molecules/TrainingCreatorExerciseCard/TrainingCreatorExerciseCard';
+import TrainingCreatorExerciseCard from '../../../components/molecules/training-creator-exercise-card';
 import { MdOutlineClose } from 'react-icons/md';
-import { Modal } from '../../../components/atoms/Modals/Modal/Modal';
+import { Modal } from '../../../components/atoms/modals/modal';
 import { ExerciseFinder, ExerciseFinderType } from '../../../modules/exercise-finder';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { deviceValues } from '../../../devices/Breakpoints';
-import { DesktopExerciseCard } from '../../../components/molecules/ExerciseCard/DesktopExerciseCard/DesktopExerciseCard';
-import { ButtonType } from '../../../components/atoms/Button/Button';
+import { DesktopExerciseCard } from '../../../components/molecules/exercise-card/desktop-exercise-card';
+import { ButtonType } from '../../../components/atoms/button';
 
 export const TrainingCreator = observer(() => {
   const [isExerciseFinderModalEnabled, setExerciseFinderModal] = useState<boolean>(false);
@@ -148,11 +148,9 @@ export const TrainingCreator = observer(() => {
         </Modal> }
 
         <TrainingCreatorFooter>
-          {isTabletDevice && <Button content={'Zapisz trening'} type={ButtonType.QUATERNARY} onClick={onTrainingCreateHandler} />}
+          {isTabletDevice && <Button content={'Zapisz trening'} btnType={ButtonType.QUATERNARY} onClick={onTrainingCreateHandler} />}
         </TrainingCreatorFooter>
       </TrainingCreatorSection>
-
-
     </MainTemplate>
   )
 });

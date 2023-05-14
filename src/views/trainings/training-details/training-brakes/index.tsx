@@ -1,7 +1,7 @@
 import React from 'react'
-import Paragraph from '../../../../components/atoms/Paragraph/Paragraph'
-import H1 from '../../../../components/atoms/H1/H1'
-import { theme } from '../../../../theme/MainTheme';
+import Paragraph from '../../../../components/atoms/paragraph'
+import H1 from '../../../../components/atoms/h1'
+import { theme } from '../../../../theme/main-theme';
 import { TrainingBrakesContainer } from './styles';
 import { TrainingDetailsLayout } from '../training-details-layout';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ExerciseCardSkeleton } from '../../components/molecules/ExerciseCard/Skeleton/ExerciseCardSekleton';
+import { ExerciseCardSkeleton } from '../../components/molecules/exercise-card/skeleton';
 
 export const ExerciseFinderSkeleton = () => {
   return <>

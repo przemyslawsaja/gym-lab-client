@@ -1,8 +1,8 @@
 import React from 'react';
 import { AuthorizationTemplate } from '../../../templates';
-import { IAuthorizationTemplateButtons } from '../../../templates/authorization-template/AuthorizationTemplate';
+import { IAuthorizationTemplateButtons } from '../../../templates/authorization-template';
 import { authorizationStore } from '../../../stores';
-import { Input } from '../../../components/atoms/Inputs/Input/Input';
+import { Input } from '../../../components/atoms/inputs/input';
 import { observer } from 'mobx-react';
 import { toast } from 'react-toastify';
 

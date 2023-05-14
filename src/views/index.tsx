@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import GlobalStyle from '../theme/GlobalStyles';
+import GlobalStyle from '../theme/global-styles';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { theme } from '../theme/MainTheme';
+import { theme } from '../theme/main-theme';
 import { userStore } from '../stores';
 import { ApplicationRoutes } from '../routes/applicationRoutes'
 import { AuthorizationRoutes } from '../routes/authorizationRoutes';
 import { UseCase } from '../api/use-cases/UseCase';
-import { Loader } from '../components/atoms/Loader/Loader';
+import { Loader } from '../components/atoms/loader';
 import { toast, ToastContainer } from 'react-toastify';
 import { observer } from 'mobx-react';
 import { SkeletonTheme } from 'react-loading-skeleton';

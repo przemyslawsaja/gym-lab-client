@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from 'react'
 import { ExerciseFinderWrapper, ExercisesContainer, ExercisesNotFound, FinderContainer, FinderSearch } from './styles'
-import { SearchInput } from '../../components/atoms/Inputs/SearchInput/SearchInput';
+import { SearchInput } from '../../components/atoms/inputs/search-input/search-input';
 import { exerciseFinderStore, exerciseSetsStore, trainingStore } from '../../stores';
 import { observer } from 'mobx-react';
-import { MobileExerciseCard } from '../../components/molecules/ExerciseCard/MobileExerciseCard/MobileExerciseCard'
-import { ExerciseSetsModal } from '../../components/organisms/ExerciseSetsModal/ExerciseSetsModal';
+import { MobileExerciseCard } from '../../components/molecules/exercise-card/mobile-exercise-card'
+import { ExerciseSetsModal } from '../../components/organisms/exercise-sets-modal';
 import { ApplicationRoutePaths } from '../../routes/applicationRoutes';
 import { useHistory } from 'react-router-dom';
 import { ExerciseFinderSkeleton } from './skeleton';
@@ -18,7 +18,7 @@ export enum ExerciseFinderType {
 
 interface IExerciseFinderProps {
   type?: ExerciseFinderType
-
+    withExercisesButtons?: boolean
   onExerciseClick?(): void;
 
   onExerciseSetsModalConfirm?(): void;
@@ -31,7 +31,8 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
      type,
      onExerciseClick,
      onExerciseSetsModalClose,
-     onExerciseSetsModalConfirm
+     onExerciseSetsModalConfirm,
+     withExercisesButtons = true
    }) => {
 
     const { exerciseSearch, exerciseList, setExerciseSearch, fetchExercises, isLoading } = exerciseFinderStore;
@@ -74,7 +75,7 @@ export const ExerciseFinder: FC<IExerciseFinderProps> = observer(
 
       return exerciseList.length <= 0
         ? <ExercisesNotFound> Brak wyników wyszukiwania :(</ExercisesNotFound>
-        : exerciseList.map((exercise, idx) => <MobileExerciseCard key={ idx } exercise={ exercise } onClick={ onExerciseClick }/>)
+        : exerciseList.map((exercise, idx) => <MobileExerciseCard key={ idx } exercise={ exercise } onClick={ onExerciseClick } withButton={withExercisesButtons}/>)
     }
 
     return (

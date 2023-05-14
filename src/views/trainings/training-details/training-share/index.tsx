@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react';
 import { TrainingDetailsLayout } from '../training-details-layout';
 import React from 'react';
-import H1 from '../../../../components/atoms/H1/H1';
-import Paragraph from '../../../../components/atoms/Paragraph/Paragraph';
-import { theme } from '../../../../theme/MainTheme';
-import { Input } from '../../../../components/atoms/Inputs/Input/Input';
+import H1 from '../../../../components/atoms/h1';
+import Paragraph from '../../../../components/atoms/paragraph';
+import { theme } from '../../../../theme/main-theme';
+import { Input } from '../../../../components/atoms/inputs/input';
 import { Button } from '../../../../components/atoms';
 import { communityStore, trainingStore } from '../../../../stores';
 import { toast } from 'react-toastify';

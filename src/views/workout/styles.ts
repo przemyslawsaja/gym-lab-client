@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../theme/MainTheme';
+import { theme } from '../../theme/main-theme';
 import img from '../../assets/img/congrats-guy.png'
 import { device } from '../../devices/Breakpoints';
 

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import Paragraph from '../../../../components/atoms/Paragraph/Paragraph'
-import H1 from '../../../../components/atoms/H1/H1'
+import Paragraph from '../../../../components/atoms/paragraph'
+import H1 from '../../../../components/atoms/h1'
 import { ExercisesContainer, ExercisesHeader } from './styles';
 import { trainingStore } from '../../../../stores';
 import { observer } from 'mobx-react';
-import { TrainingExerciseItem } from '../../../../components/molecules/TrainingExerciseItem/TrainingExerciseItem';
+import { TrainingExerciseItem } from '../../../../components/molecules/training-exercise-item';
 import { TrainingDetailsLayout } from '../training-details-layout';
-import { theme } from '../../../../theme/MainTheme';
-import { FloatingAddExerciseButton } from '../../../../components/molecules/TrainingExerciseItem/TrainingExerciseItemStyle';
+import { theme } from '../../../../theme/main-theme';
+import { FloatingAddExerciseButton } from '../../../../components/molecules/training-exercise-item/styles';
 import { Button } from '../../../../components/atoms';
 import { IoIosAddCircleOutline } from 'react-icons/all';
-import { Modal } from '../../../../components/atoms/Modals/Modal/Modal';
+import { Modal } from '../../../../components/atoms/modals/modal';
 import { ExerciseFinder, ExerciseFinderType } from '../../../../modules/exercise-finder';
 
 

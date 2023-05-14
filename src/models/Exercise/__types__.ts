@@ -1,4 +1,4 @@
-import { IExerciseSet } from '../../components/organisms/ExerciseSetsModal/ExerciseSet';
+import { IExerciseSet } from '../../components/organisms/exercise-sets-modal/components/exercise-set';
 
 export interface IExercise {
   id: string,

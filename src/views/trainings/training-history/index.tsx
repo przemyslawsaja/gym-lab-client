@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { MainTemplate } from '../../../templates'
 import { EmptyHistory, TrainingHistoryWrapper } from './styles'
 import { trainingStore } from '../../../stores';
-import { HistoryTraining } from '../../../components/molecules/HistoryTraining/HistoryTraining';
+import { HistoryTraining } from '../../../components/molecules/history-training';
 import { observer } from 'mobx-react';
-import Paragraph from '../../../components/atoms/Paragraph/Paragraph';
+import Paragraph from '../../../components/atoms/paragraph';
 
 export const TrainingHistory = observer(() => {
   const [isLoading, setLoader] = useState<boolean>(false);

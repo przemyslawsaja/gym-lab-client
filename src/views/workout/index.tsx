@@ -5,15 +5,15 @@ import { MdCheck, MdClose, MdNavigateBefore, MdNavigateNext } from 'react-icons/
 import { trainingStore, workoutStore } from '../../stores';
 import { observer } from 'mobx-react';
 import { Carousel } from 'react-responsive-carousel';
-import H1 from '../../components/atoms/H1/H1';
-import { WorkoutTableRow } from '../../components/molecules/WorkoutTableRow/WorkoutTableRow';
-import Paragraph from '../../components/atoms/Paragraph/Paragraph';
+import H1 from '../../components/atoms/h1';
+import { WorkoutTableRow } from '../../components/molecules/workout-table-row/WorkoutTableRow';
+import Paragraph from '../../components/atoms/paragraph';
 import { ApplicationRoutePaths } from '../../routes/applicationRoutes';
-import { Modal } from '../../components/atoms/Modals/Modal/Modal';
+import { Modal } from '../../components/atoms/modals/modal';
 import Confetti from 'react-confetti'
 import { useWindowSize } from '../../hooks/useWindowSize';
-import { IHeaderNavigationProps } from '../../components/organisms/HeaderNavigation/HeaderNavigation';
-import { IWorkoutModeNavigationProps } from '../../components/organisms/Navigation/Navigation';
+import { IHeaderNavigationProps } from '../../components/organisms/header-navigation';
+import { IWorkoutModeNavigationProps } from '../../components/organisms/navigation';
 import {
   CarouselContainer,
   CarouselWrapper,
@@ -31,9 +31,9 @@ import {
 } from './styles'
 import { deviceValues } from '../../devices/Breakpoints';
 import { Button, RoundButton } from '../../components/atoms';
-import { ButtonType } from '../../components/atoms/Button/Button';
+import { ButtonType } from '../../components/atoms/button';
 import { MdTimer } from 'react-icons/all';
-import { TimerModal } from '../../components/molecules/TimerModal/TimerModal';
+import { TimerModal } from '../../components/molecules/timer-modal';
 
 export const Workout = observer(() => {
   const { trainingId } = useParams<{ trainingId: string, exerciseId: string }>();
@@ -199,13 +199,13 @@ export const Workout = observer(() => {
     </WorkoutWrapper>
     <WorkoutFooterWrapper>
       <WorkoutFooter>
-        <Button { ...getLeftNavigationButton() } type={ ButtonType.SECONDARY } reverse={ !isFirstExercise() }>
+        <Button { ...getLeftNavigationButton() } btnType={ ButtonType.SECONDARY } reverse={ !isFirstExercise() }>
           { isFirstExercise() ? <MdClose size={ '2.5rem' }/> : <MdNavigateBefore size={ '2.5rem' }/> }
         </Button>
         <RoundButton radius={ '150px' } type={ ButtonType.RED } onClick={ () => setTimerModal(true) }>
           <MdTimer size={ 60 } color={ '#fff' }/>
         </RoundButton>
-        <Button { ...getRightNavigationButton() } type={ isFinalExercise() ? ButtonType.QUATERNARY : ButtonType.PRIMARY }>
+        <Button { ...getRightNavigationButton() } btnType={ isFinalExercise() ? ButtonType.QUATERNARY : ButtonType.PRIMARY }>
           { isFinalExercise() ? <MdCheck size={ '2.5rem' }/> : <MdNavigateNext size={ '2.5rem' }/> }
         </Button>
       </WorkoutFooter>

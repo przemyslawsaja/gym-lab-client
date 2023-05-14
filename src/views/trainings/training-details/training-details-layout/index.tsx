@@ -5,15 +5,15 @@ import { AiFillEdit, FiCheck, IoChevronBackSharp } from 'react-icons/all';
 import { ApplicationRoutePaths } from '../../../../routes/applicationRoutes';
 import { trainingStore } from '../../../../stores';
 import { useHistory, useParams } from 'react-router-dom';
-import HeaderNavigation from '../../../../components/organisms/HeaderNavigation/HeaderNavigation';
-import { Navigation } from '../../../../components/organisms/Navigation/Navigation';
-import { Container } from '../../../../templates/main-template/MainTemplateStyle';
+import HeaderNavigation from '../../../../components/organisms/header-navigation';
+import { Navigation } from '../../../../components/organisms/navigation';
+import { Container } from '../../../../templates/main-template/styles';
 import { MdOutlineClose } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { useWindowSize } from '../../../../hooks/useWindowSize';
 import { deviceValues } from '../../../../devices/Breakpoints';
-import { ButtonType } from '../../../../components/atoms/Button/Button';
-import { IHeaderButton } from '../../../../components/organisms/HeaderNavigation/__types__';
+import { ButtonType } from '../../../../components/atoms/button';
+import { IHeaderButton } from '../../../../components/organisms/header-navigation/types';
 
 interface ITrainingDetailsLayoutProps {
   children: JSX.Element | JSX.Element[]
