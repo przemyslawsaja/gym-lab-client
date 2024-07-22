@@ -1,1 +1,18 @@
-{}
+{
+    "gym lab": {
+        "projectName": "gym lab",
+        "description": "gym lab auth",
+        "type": "community",
+        "author": "przemyslawsaja",
+        "version": "0.0.1",
+        "authorWebsite": "https://github.com/przemyslawsaja/gym-lab-client",
+        "githubUri": "https://github.com/przemyslawsaja/gym-lab-client",
+        "license": "apache-2.0",
+        "lastUpdated": "1721654554734",
+        "tags": [
+            "authentication"
+        ],
+        "noDirectLaunch": [],
+        "configs": {}
+    }
+}
